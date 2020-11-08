@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 
-void main() {
+Future<void> main() async {
+  var connection = new DatabaseHelper();
+  print(await connection.connectDB());
   runApp(MyApp());
 }
 
