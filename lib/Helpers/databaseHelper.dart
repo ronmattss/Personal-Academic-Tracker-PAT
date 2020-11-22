@@ -10,9 +10,10 @@ class DatabaseHelper {
         port: 3306,
         user: 'root',
         db: 'patdb',
-        password: "ShadedShade");
+        password: pass);
     var conn = await MySqlConnection.connect(settings);
-    var testPrint = await conn.query("SELECT * FROM patdb.accounttable;");
+    var testPrint = await conn.query(
+        "SELECT * FROM patdb.accounttable;"); // gonna need a SQL String for custom SQL statements
     for (var row in testPrint) {
       print("Username: ${row[0]} Password: ${row[1]}");
     }
