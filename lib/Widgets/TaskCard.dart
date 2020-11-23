@@ -2,40 +2,52 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personalacademictracker/Views/SubjectPage.dart';
 
-class TaskCard extends StatefulWidget
-{
+class TaskCard extends StatefulWidget {
   const TaskCard({Key key}) : super(key: key);
   @override
-  State<StatefulWidget> createState()=> _TaskCardState();}
+  State<StatefulWidget> createState() => _TaskCardState();
+}
 
-
-class _TaskCardState extends State<TaskCard>
-{
+class _TaskCardState extends State<TaskCard> {
   var timeDilation;
-  Widget _customTaskTile(BuildContext context)
+   String title = "tite";
+  @override
+  void initState()
   {
-    return CheckboxListTile(
-      title: const Text('Some Task'),controlAffinity: ListTileControlAffinity.leading, checkColor: Colors.black,tileColor: Colors.white,activeColor: Colors.deepOrange,
-      subtitle: const Text('Some Task Description'),
-      value: timeDilation == true,
-      onChanged: (bool value) {
-        setState(() {
-          timeDilation = value ? true: false;
+    super.initState();
+    title = "hehe";
+  }
+
+  // Prefer This
+  Widget _customTaskTileSet(BuildContext context) {
+    return ListTile(
+      leading: Checkbox(
+        value: timeDilation == true,
+        onChanged: (bool value) {
+          setState(() {
+            timeDilation = value ? true : false;
+            title = value ? "woo":"wee";
+          });
+        },
+      ),
+      title: Text("Task Title"),
+      subtitle: Text(title),
+      onTap: () {
+        setState(() {       // Go to Subject Page
+          title = "weeeeeeeeeeeeee";
+          print(title);
         });
       },
-      secondary: const Icon(Icons.book),
     );
   }
-  Widget _customTaskCard(BuildContext context)
-  {
-    return SizedBox(height: 75,child: Card(child:_customTaskTile(context)));
-  }
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-   return _customTaskCard(context);
+    return _customTaskTileSet(context);
   }
-
 }
