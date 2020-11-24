@@ -5,8 +5,8 @@ import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 Future<void> main() async {
-  //var connection = new DatabaseHelper();
-  // print(await connection.connectDB());
+ // var connection = new DatabaseHelper();
+//   print(await connection.connectDB());
   runApp(MyApp());
 }
 
