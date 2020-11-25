@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
 
 // Thie Page is the expanded version of the Lists
 class SubjectPage extends StatefulWidget {
@@ -80,7 +81,7 @@ class _SubjectPageState extends State<SubjectPage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(10),
-                        child: _customBox(context, 200, 200, Colors.yellow),
+                        child: Container(decoration: BoxDecoration(color: Colors.yellow,borderRadius: BorderRadius.circular(25)),child:Text("Some Content"),width: 200,height: 200,),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(10),
@@ -126,6 +127,6 @@ class _SubjectPageState extends State<SubjectPage> {
         appBar: AppBar(
           title: Text("Subject Title"),
         ),
-        body:_customDashboard(context));
+        body:Container(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,child: DashboardWidget()));
   }
 }
