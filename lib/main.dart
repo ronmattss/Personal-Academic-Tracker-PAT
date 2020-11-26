@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart' ;
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:personalacademictracker/Preferences/CustomTheme.dart';
+import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
 import 'package:personalacademictracker/Widgets/SubjectCard.dart';
 import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 Future<void> main() async {
- // var connection = new DatabaseHelper();
+  // var connection = new DatabaseHelper();
 //   print(await connection.connectDB());
   runApp(MyApp());
 }
@@ -16,23 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Personal Academic Tracker',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       home: MyHomePage(title: 'Personal Academic Tracker'),
+      theme: CustomThemeData.customTheme,
     );
   }
 }
@@ -70,18 +57,26 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  Widget _customCarousel(BuildContext context)
-  {
-    return CarouselSlider.builder(options: CarouselOptions(height: 600),
-      itemCount: 15,
-      itemBuilder: (BuildContext context, int itemIndex) =>
-         Container(child: SubjectCard(),)
+
+  Widget _customCarousel(BuildContext context) {
+    return CarouselSlider.builder(
+        options: CarouselOptions(height: 600),
+        itemCount: 15,
+        itemBuilder: (BuildContext context, int itemIndex) => Container(
+              child: SubjectCard(),
+            ));
+  }
+
+  Widget _customCardList(BuildContext context) {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: 9,
+      itemBuilder: (BuildContext context, int itemIndex) => Container(
+        child: SubjectCard(),
+      ),
     );
   }
-  Widget _customCardList(BuildContext context)
-  {
-    return ListView.builder(scrollDirection: Axis.horizontal,itemCount: 9,itemBuilder: (BuildContext context, int itemIndex)=> Container(child: SubjectCard(),),);
-  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -91,28 +86,30 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
+     /* appBar: AppBar(elevation: 0,
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
-      ),
-      body: Center(
+      ),*/
+      body:
+          DashboardWidget() /*Center(
 
         child: Column(
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[Container(child: _customCardList(context),height: 600,)
-            /*Text(
+            */ /*Text(
               'You have pushed the button this many times:',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
-            Text('$width'), */
+            Text('$width'), */ /*
           ],
         ),
-      ),
+      )*/
+      ,
       drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
@@ -120,16 +117,18 @@ class _MyHomePageState extends State<MyHomePage> {
           DrawerHeader(
             child: Text('Drawer Header'),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
             ),
-          ), ListTile(
-            title: Center(child:Text('Subjects')),
+          ),
+          ListTile(hoverColor: Theme.of(context).accentColor,
+            title: Center(child: Text('Subjects',style: TextStyle(color: Colors.white),)),
             onTap: () {
               // Update the state of the app.
               // ...
             },
-          ), ListTile(
-            title: Center(child:Text('Settings')),
+          ),
+          ListTile(
+            title: Center(child: Text('Settings')),
             onTap: () {
               // Update the state of the app.
               // ...

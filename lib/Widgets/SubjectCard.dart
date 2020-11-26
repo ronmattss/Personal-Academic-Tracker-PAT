@@ -85,7 +85,7 @@ class _SubjectCardState extends State<SubjectCard> {
       width: 300,
       height: 600,
       child: Card(
-          color: Colors.deepOrangeAccent,
+          color: Theme.of(context).primaryColorDark,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(25.0),
           ),
@@ -102,7 +102,7 @@ class _SubjectCardState extends State<SubjectCard> {
               ),
             ),
             Container(
-              color: Colors.amberAccent,
+              color: Theme.of(context).primaryColor,
               height: 40,
               width: MediaQuery.of(context).size.width,
               child: Center(child: Text('List of To do')),

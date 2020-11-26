@@ -127,6 +127,6 @@ class _SubjectPageState extends State<SubjectPage> {
         appBar: AppBar(
           title: Text("Subject Title"),
         ),
-        body:Container(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,child: DashboardWidget()));
+        body:Container(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,child: DashboardWidget()),);
   }
 }
