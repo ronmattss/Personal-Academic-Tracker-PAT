@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
 
+//TODO: Add Subject,Task,Todo,Trackers,statistics,Subject page,other Dashboard Stuff, Profile, Statistics
 class DashboardWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DashboardWidget();
