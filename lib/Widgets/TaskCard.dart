@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:personalacademictracker/Views/SubjectPage.dart';
 
 class TaskCard extends StatefulWidget {
@@ -60,4 +61,124 @@ class _TaskCardState extends State<TaskCard> {
 
     return _customTaskTileSet(context);
   }
+}
+
+enum Priority
+{
+  High,Low
+}
+class PriorityTaskCard extends StatefulWidget
+{
+  final String taskTitle;
+  final String taskSubject;
+  final Priority taskPriority;
+  final bool isTaskFinished;
+  PriorityTaskCard([this.taskTitle='taskTitle',this.taskSubject='taskSubject',this.taskPriority=Priority.High,this.isTaskFinished=false]);
+
+  @override
+  State<StatefulWidget> createState() => _PriorityTaskCard();
+}
+
+class _PriorityTaskCard extends State<PriorityTaskCard>
+{
+
+    var isFinished;
+    String title = "tite";
+    Text textIfNotChecked;
+    Text textIfChecked;
+    Text currentText;
+    @override
+    void initState()
+    {
+      textIfNotChecked= new Text(widget.taskTitle,style:TextStyle(color: Colors.black));
+      textIfChecked = new Text(widget.taskTitle,style: TextStyle(decoration: TextDecoration.lineThrough),);
+      currentText = textIfNotChecked;
+      title = "hehe";
+      super.initState();
+    }
+
+    // Prefer This
+    Widget _priorityTaskCard(BuildContext context) {
+      return ListTile(
+        leading: Checkbox(
+          value: isFinished == true,
+          onChanged: (bool value) {
+            setState(() {
+              isFinished = value ? true : false;
+              currentText = isFinished ? textIfChecked:textIfNotChecked;
+              title = value ? "woo":"wee";
+            });
+          },
+        ),
+        title: currentText,
+        subtitle: Text(widget.taskSubject),trailing: Text(widget.taskPriority.toString().split('.').last),
+        onTap: () {
+          setState(() {       // Go to Subject Page
+            title = "weeeeeeeeeeeeee";
+            print(title);
+          });
+        },
+      );
+    }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return _priorityTaskCard(context);
+  }
+
+}
+class PinnedTaskCard extends StatefulWidget
+{
+  final String taskTitle;
+  final String taskSubject;
+  final bool isTaskFinished;
+  PinnedTaskCard([this.taskTitle='taskTitle',this.taskSubject='taskSubject',this.isTaskFinished=false]);
+
+  @override
+  State<StatefulWidget> createState() => _PinnedTaskCardState();
+}
+
+class _PinnedTaskCardState extends State<PinnedTaskCard>
+{
+
+  bool isFinished;
+  String title = "tite";
+  Text textIfNotChecked;
+  Text textIfChecked;
+  Text currentText;
+  Icon icon = new Icon(Icons.pin_drop);
+  @override
+  void initState()
+  { isFinished = widget.isTaskFinished;
+    textIfNotChecked= new Text(widget.taskTitle,style:TextStyle(color: Colors.black));
+    textIfChecked = new Text(widget.taskTitle,style: TextStyle(decoration: TextDecoration.lineThrough),);
+    currentText = textIfNotChecked;
+    title = "hehe";
+    super.initState();
+  }
+
+  // Prefer This
+  Widget _pinnedTaskCard(BuildContext context) {
+    return ListTile(dense: true,
+      leading: icon,
+      title: currentText,
+      subtitle: Text(widget.taskSubject),
+      onTap: () {
+        setState(() {       // Go to Subject Page
+          isFinished = !isFinished;
+          icon = isFinished ? Icon(Icons.pin_drop_outlined):Icon(Icons.pin_drop);
+          title = "weeeeeeeeeeeeee";
+          print(title);
+        });
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return _pinnedTaskCard(context);
+  }
+
 }

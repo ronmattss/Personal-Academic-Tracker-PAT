@@ -54,65 +54,128 @@ class _DashboardWidget extends State<DashboardWidget> {
                             child: Column(
                               children: [
                                 Expanded(
-                                  child: Container(
+                                  child: Card(margin: EdgeInsets.zero,
                                     color: Theme.of(context).primaryColor,
-                                    child: ListView(
-                                      padding: EdgeInsets.all(0),
-                                      children: [
-                                        DrawerHeader(
-                                          child: Column(children: [
-                                            CircleAvatar(
-                                              radius: 40,
-                                              child: Icon(Icons.person),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'First Name Last Name',
-                                                style: TextStyle(
-                                                    color: Colors.white),
+                                    child: ListTileTheme(
+                                      child: ListView(
+                                        padding: EdgeInsets.all(0),
+                                        children: [
+                                          DrawerHeader(
+                                            child: Column(children: [
+                                              CircleAvatar(
+                                                radius: 40,
+                                                child: Icon(Icons.person),
                                               ),
-                                            )
-                                          ]),
-                                          margin: EdgeInsets.zero,
-                                          decoration: BoxDecoration(
-                                            color:
-                                                Theme.of(context).primaryColor,
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  'Steve Jobs',
+                                                  style: TextStyle(
+                                                      color: Colors.white),
+                                                ),
+                                              )
+                                            ]),
+                                            margin: EdgeInsets.zero,
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                            ),
                                           ),
-                                        ),
-                                        ListTile(
-                                          tileColor:
-                                              Theme.of(context).primaryColor,
-                                          title: Center(
-                                              child: Text(
-                                            'Dashboard',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )),
-                                          onTap: () {
-                                            // Update the state of the app.
-                                            // ...
-                                          },
-                                        ),
-                                        ListTile(
-                                          tileColor:
-                                              Theme.of(context).primaryColor,
-                                          title: Center(
-                                              child: Text(
-                                            'Subjects',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          )),
-                                          onTap: () {
-                                            // Update the state of the app.
-                                            // ...
-                                          },
-                                        ),
-                                      ],
+                                          Card(margin: EdgeInsets.zero,
+                                            color: Theme.of(context)
+                                                .primaryColor,
+                                            elevation: 0,
+                                            child: ListView(
+                                              shrinkWrap: true,
+                                              children: [
+                                                ListTile(
+                                                  title: Center(
+                                                      child: Text(
+                                                    'Dashboard',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                                  onTap: () {
+                                                    print('why not hover');
+                                                    // Update the state of the app.
+                                                    // ...
+                                                  },
+                                                ),
+                                                ListTile(
+                                                  title: Center(
+                                                      child: Text(
+                                                        'Calendar',
+                                                        style: TextStyle(
+                                                            color: Colors.white),
+                                                      )),
+                                                  onTap: () {
+                                                    print('why not hover');
+                                                    // Update the state of the app.
+                                                    // ...
+                                                  },
+                                                ),//Calendar
+                                                ListTile(
+                                                  title: Center(
+                                                      child: Text(
+                                                        'Grades',
+                                                        style: TextStyle(
+                                                            color: Colors.white),
+                                                      )),
+                                                  onTap: () {
+                                                    print('why not hover');
+                                                    // Update the state of the app.
+                                                    // ...
+                                                  },
+                                                ),//Grades
+                                                ListTile(
+                                                  title: Center(
+                                                      child: Text(
+                                                        'Schedule',
+                                                        style: TextStyle(
+                                                            color: Colors.white),
+                                                      )),
+                                                  onTap: () {
+                                                    print('why not hover');
+                                                    // Update the state of the app.
+                                                    // ...
+                                                  },
+                                                ),//Schedule
+                                                ListTile(
+                                                  title: Center(
+                                                      child: Text(
+                                                    'Subjects',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                                  onTap: () {
+                                                    // Update the state of the app.
+                                                    // ...
+                                                  },
+                                                ),//Subjects
+                                                ListTile(
+                                                  title: Center(
+                                                      child: Text(
+                                                        'Tasks',
+                                                        style: TextStyle(
+                                                            color: Colors.white),
+                                                      )),
+                                                  onTap: () {
+                                                    print('why not hover');
+                                                    // Update the state of the app.
+                                                    // ...
+                                                  },
+                                                ),
+
+
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                )
+                                ),
                               ],
                             ),
                           )
@@ -144,111 +207,173 @@ class _DashboardWidget extends State<DashboardWidget> {
                                           borderRadius:
                                               BorderRadius.circular(25)),
                                       child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(25)),
                                         child: SizedBox(
-                                          width: 200,
-                                          child: CarouselSlider.builder(
-                                            options: CarouselOptions(
-                                              initialPage: 0,
-                                              pageSnapping: true,
-                                              enlargeCenterPage: false,
-                                              viewportFraction: 1,
-                                              autoPlay: true,
-                                              autoPlayInterval:
-                                                  Duration(seconds: 3),
-                                              autoPlayAnimationDuration:
-                                                  Duration(seconds: 1),
-                                            ),
-                                            itemCount: 3,
-                                            itemBuilder: (BuildContext context,
-                                                    int itemIndex) =>
-                                                Column(
-                                              children: [
-                                                SizedBox(
-                                                  height: 60,
-                                                  child: DrawerHeader(
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 20),
-                                                      child: Text(
-                                                        "TOMORROW",
-                                                        style: TextStyle(
-                                                            fontSize: 25),
-                                                      ),
-                                                    ),
-                                                    padding:
-                                                        EdgeInsets.only(top: 0),
-                                                  ),
+                                          height: 60,
+                                          child: Column(
+                                            children: [
+                                              Padding(
+                                                child: Text(
+                                                  "Upcoming",
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
-                                                SizedBox(
-                                                  width: 300,
-                                                  child: ListView(
-                                                      shrinkWrap: true,
-                                                      padding:
-                                                          EdgeInsets.all(0),
-                                                      children:
-                                                          ListTile.divideTiles(
-                                                              context: context,
-                                                              tiles: [
-                                                            ListTile(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  print(
-                                                                      "Title");
-                                                                  setWidth();
-                                                                });
-                                                              },
-                                                              minVerticalPadding:
-                                                                  2,
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
+                                                padding: EdgeInsets.only(
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
+                                              ),
+                                              Flexible(
+                                                  fit: FlexFit.tight,
+                                                  child: Material(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          25),
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      25)),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 0),
+                                                        child: SizedBox(
+                                                          child: CarouselSlider
+                                                              .builder(
+                                                            options:
+                                                                CarouselOptions(
+                                                              initialPage: 0,
+                                                              pageSnapping:
+                                                                  true,
+                                                              enlargeCenterPage:
+                                                                  false,
+                                                              viewportFraction:
+                                                                  1,
+                                                              autoPlay: true,
+                                                              autoPlayInterval:
+                                                                  Duration(
+                                                                      seconds:
+                                                                          5),
+                                                              autoPlayAnimationDuration:
+                                                                  Duration(
+                                                                      seconds:
+                                                                          1),
+                                                              pauseAutoPlayOnTouch:
+                                                                  true,
                                                             ),
-                                                            ListTile(
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
-                                                            ),
-                                                            ListTile(
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
-                                                            )
-                                                          ]).toList()),
-                                                )
-                                              ],
-                                            ),
+                                                            itemCount: 3,
+                                                            itemBuilder: (BuildContext
+                                                                        context,
+                                                                    int
+                                                                        itemIndex) =>
+                                                                Column(
+                                                                    children: [
+                                                                  SizedBox(
+                                                                    height: 50,
+                                                                    child:
+                                                                        DrawerHeader(
+                                                                      child:
+                                                                          Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.only(top: 10),
+                                                                        child:
+                                                                            Text(
+                                                                          "TOMORROW",
+                                                                          style:
+                                                                              TextStyle(fontSize: 25),
+                                                                        ),
+                                                                      ),
+                                                                      padding: EdgeInsets
+                                                                          .only(
+                                                                              top: 0),
+                                                                    ),
+                                                                  ),
+                                                                  Expanded(
+                                                                    //width: 300,
+                                                                    child: ListView(
+                                                                        shrinkWrap: true,
+                                                                        padding: EdgeInsets.all(0),
+                                                                        children: ListTile.divideTiles(context: context, tiles: [
+                                                                          ListTile(
+                                                                            onTap:
+                                                                                () {
+                                                                              setState(() {
+                                                                                print("Title");
+                                                                                setWidth();
+                                                                              });
+                                                                            },
+                                                                            minVerticalPadding:
+                                                                                2,
+                                                                            subtitle:
+                                                                                Text("Deadline: 3:00 PM"),
+                                                                            title:
+                                                                                Text(
+                                                                              "Sprite Renders",
+                                                                            ),
+                                                                            trailing:
+                                                                                Icon(Icons.pending_actions_outlined),
+                                                                          ),
+                                                                          ListTile(
+                                                                            subtitle:
+                                                                                Text("Deadline: 3:00 PM"),
+                                                                            title:
+                                                                                Text(
+                                                                              "Sprite Renders",
+                                                                            ),
+                                                                            trailing:
+                                                                                Icon(Icons.pending_actions_outlined),
+                                                                          ),
+                                                                          ListTile(
+                                                                            subtitle:
+                                                                                Text("Deadline: 3:00 PM"),
+                                                                            title:
+                                                                                Text(
+                                                                              "Sprite Renders",
+                                                                            ),
+                                                                            trailing:
+                                                                                Icon(Icons.pending_actions_outlined),
+                                                                          ),
+                                                                          ListTile(
+                                                                            subtitle:
+                                                                                Text("Deadline: 3:00 PM"),
+                                                                            title:
+                                                                                Text(
+                                                                              "Sprite Renders",
+                                                                            ),
+                                                                            trailing:
+                                                                                Icon(Icons.pending_actions_outlined),
+                                                                          ),
+                                                                        ]).toList()),
+                                                                  ),
+                                                                ]),
+                                                          ),
+                                                        ),
+                                                      )))
+                                            ],
                                           ),
                                         ),
                                       ),
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),//Deadline Card
+                                  ), //Deadline Card
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
@@ -261,46 +386,77 @@ class _DashboardWidget extends State<DashboardWidget> {
                                               Padding(
                                                 child: Text(
                                                   "Subjects",
-                                                  style:
-                                                      TextStyle(fontSize: 25,color: Colors.white),
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Research"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Research"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("10/20"),
+                                                              label:
+                                                                  Text("10/20"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Computer Organization"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Computer Organization"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("2/5"),
+                                                              label:
+                                                                  Text("2/5"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Application Development"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Application Development"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Principles Of Programming Language"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Principles Of Programming Language"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           )
                                                         ],
@@ -316,19 +472,20 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),//Subjects Card
+                                  ), //Subjects Card
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                              BorderRadius.circular(25)),
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
@@ -336,24 +493,47 @@ class _DashboardWidget extends State<DashboardWidget> {
                                               Padding(
                                                 child: Text(
                                                   "Completed",
-                                                  style:
-                                                  TextStyle(fontSize: 25,color: Colors.white),
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
-                                                          TaskCard("Make Calculator","Scical goes null","AppDev"),
-                                                          TaskCard("Review Regular Expressions","Regex goes  \d^[0-9]","Automata"),
-                                                          TaskCard("Sap-1 Review","binary goes 01000101","Comp Org"),
-
+                                                          TaskCard(
+                                                              "Make Calculator",
+                                                              "Scical goes null",
+                                                              "AppDev"),
+                                                          TaskCard(
+                                                              "Review Regular Expressions",
+                                                              "Regex goes  \d^[0-9]",
+                                                              "Automata"),
+                                                          TaskCard(
+                                                              "Sap-1 Review",
+                                                              "binary goes 01000101",
+                                                              "Comp Org"),
                                                         ],
                                                       ),
                                                     ),
@@ -367,66 +547,98 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),//Completed Card
+                                  ), //Completed Card
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                              BorderRadius.circular(25)),
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
                                             children: [
                                               Padding(
                                                 child: Text(
-                                                  "Statistics",
-                                                  style:
-                                                  TextStyle(fontSize: 25,color: Colors.white),
+                                                  "Schedule",
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Research"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Research"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("10/20"),
+                                                              label:
+                                                                  Text("10/20"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Computer Organization"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Computer Organization"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("2/5"),
+                                                              label:
+                                                                  Text("2/5"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Application Development"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Application Development"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Principles Of Programming Language"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Principles Of Programming Language"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           )
                                                         ],
@@ -442,7 +654,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ) //Statistics Card
+                                  )
                                 ],
                               ),
                               Row(
@@ -452,13 +664,14 @@ class _DashboardWidget extends State<DashboardWidget> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                              BorderRadius.circular(25)),
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
@@ -466,48 +679,38 @@ class _DashboardWidget extends State<DashboardWidget> {
                                               Padding(
                                                 child: Text(
                                                   "Priority",
-                                                  style:
-                                                  TextStyle(fontSize: 25,color: Colors.white),
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Research"),dense:true,
-                                                            trailing: Chip(
-                                                              label: Text("10/20"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Computer Organization"),dense:true,
-                                                            trailing: Chip(
-                                                              label: Text("2/5"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Application Development"),dense: true,
-                                                            trailing: Chip(
-                                                              label: Text("3/10"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Principles Of Programming Language"),dense: true,
-                                                            trailing: Chip(
-                                                              label: Text("3/10"),
-                                                            ),
-                                                          )
+                                                          PriorityTaskCard("Research Titles","Fundamentals of Research",Priority.High),
+                                                          PriorityTaskCard("C# 9 Review","Dot Net",Priority.High),
+                                                          PriorityTaskCard("Read about Augmented Reality","Game Development",Priority.High),
                                                         ],
                                                       ),
                                                     ),
@@ -521,19 +724,20 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),
+                                  ),//Priority
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                              BorderRadius.circular(25)),
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
@@ -541,48 +745,39 @@ class _DashboardWidget extends State<DashboardWidget> {
                                               Padding(
                                                 child: Text(
                                                   "Pinned",
-                                                  style:
-                                                  TextStyle(fontSize: 25,color: Colors.white),
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Research"),dense:true,
-                                                            trailing: Chip(
-                                                              label: Text("10/20"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Computer Organization"),dense:true,
-                                                            trailing: Chip(
-                                                              label: Text("2/5"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Application Development"),dense: true,
-                                                            trailing: Chip(
-                                                              label: Text("3/10"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Principles Of Programming Language"),dense: true,
-                                                            trailing: Chip(
-                                                              label: Text("3/10"),
-                                                            ),
-                                                          )
+                                                          PinnedTaskCard("Debug","Make Sure there is no bugs"),
+                                                          PinnedTaskCard("Inspect","inspect UI"),
+                                                          PinnedTaskCard("Push","Push to Github"),
+                                                          PinnedTaskCard("Commit","Commit to master branch")
                                                         ],
                                                       ),
                                                     ),
@@ -596,19 +791,20 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),
+                                  ),//Pinned
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                              BorderRadius.circular(25)),
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
@@ -616,46 +812,77 @@ class _DashboardWidget extends State<DashboardWidget> {
                                               Padding(
                                                 child: Text(
                                                   "Grades",
-                                                  style:
-                                                  TextStyle(fontSize: 25,color: Colors.white),
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Research"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Research"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("10/20"),
+                                                              label:
+                                                                  Text("10/20"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Computer Organization"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Computer Organization"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("2/5"),
+                                                              label:
+                                                                  Text("2/5"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Application Development"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Application Development"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Principles Of Programming Language"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Principles Of Programming Language"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           )
                                                         ],
@@ -671,19 +898,20 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),
+                                  ),//Schedule
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
-                                      child: Card(color: Theme.of(context).primaryColor,
+                                              BorderRadius.circular(25)),
+                                      child: Card(
+                                        color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
@@ -691,46 +919,77 @@ class _DashboardWidget extends State<DashboardWidget> {
                                               Padding(
                                                 child: Text(
                                                   "Calendar",
-                                                  style:
-                                                  TextStyle(fontSize: 25,color: Colors.white),
+                                                  style: TextStyle(
+                                                      fontSize: 25,
+                                                      color: Colors.white),
                                                 ),
                                                 padding: EdgeInsets.only(
-                                                    top: 15, left: 8, right: 8,bottom: 5),
+                                                    top: 15,
+                                                    left: 8,
+                                                    right: 8,
+                                                    bottom: 5),
                                               ),
-                                              Flexible(fit: FlexFit.tight,
-                                                child: Material(borderRadius: BorderRadius.only(bottomRight: Radius.circular(25),bottomLeft: Radius.circular(25)),
+                                              Flexible(
+                                                fit: FlexFit.tight,
+                                                child: Material(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
-                                                    padding: const EdgeInsets.only(top:15),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Research"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Research"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("10/20"),
+                                                              label:
+                                                                  Text("10/20"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Computer Organization"),dense:true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Computer Organization"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("2/5"),
+                                                              label:
+                                                                  Text("2/5"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Application Development"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Application Development"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           ),
                                                           ListTile(
-                                                            leading: Icon(Icons.book),
-                                                            title: Text("Principles Of Programming Language"),dense: true,
+                                                            leading: Icon(
+                                                                Icons.book),
+                                                            title: Text(
+                                                                "Principles Of Programming Language"),
+                                                            dense: true,
                                                             trailing: Chip(
-                                                              label: Text("3/10"),
+                                                              label:
+                                                                  Text("3/10"),
                                                             ),
                                                           )
                                                         ],
