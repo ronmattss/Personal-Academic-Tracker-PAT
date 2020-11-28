@@ -2,9 +2,13 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
+import 'package:personalacademictracker/Widgets/CalendarTestWidget.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
 
+import 'DashboardButton.dart';
+
 //TODO: Add Subject,Task,Todo,Trackers,statistics,Subject page,other Dashboard Stuff, Profile, Statistics
+//TODO: Resizable Widgets based on Screen size
 class DashboardWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DashboardWidget();
@@ -54,7 +58,8 @@ class _DashboardWidget extends State<DashboardWidget> {
                             child: Column(
                               children: [
                                 Expanded(
-                                  child: Card(margin: EdgeInsets.zero,
+                                  child: Card(
+                                    margin: EdgeInsets.zero,
                                     color: Theme.of(context).primaryColor,
                                     child: ListTileTheme(
                                       child: ListView(
@@ -82,92 +87,20 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                   .primaryColor,
                                             ),
                                           ),
-                                          Card(margin: EdgeInsets.zero,
-                                            color: Theme.of(context)
-                                                .primaryColor,
+                                          Card(
+                                            margin: EdgeInsets.zero,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                             elevation: 0,
                                             child: ListView(
                                               shrinkWrap: true,
                                               children: [
-                                                ListTile(
-                                                  title: Center(
-                                                      child: Text(
-                                                    'Dashboard',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  )),
-                                                  onTap: () {
-                                                    print('why not hover');
-                                                    // Update the state of the app.
-                                                    // ...
-                                                  },
-                                                ),
-                                                ListTile(
-                                                  title: Center(
-                                                      child: Text(
-                                                        'Calendar',
-                                                        style: TextStyle(
-                                                            color: Colors.white),
-                                                      )),
-                                                  onTap: () {
-                                                    print('why not hover');
-                                                    // Update the state of the app.
-                                                    // ...
-                                                  },
-                                                ),//Calendar
-                                                ListTile(
-                                                  title: Center(
-                                                      child: Text(
-                                                        'Grades',
-                                                        style: TextStyle(
-                                                            color: Colors.white),
-                                                      )),
-                                                  onTap: () {
-                                                    print('why not hover');
-                                                    // Update the state of the app.
-                                                    // ...
-                                                  },
-                                                ),//Grades
-                                                ListTile(
-                                                  title: Center(
-                                                      child: Text(
-                                                        'Schedule',
-                                                        style: TextStyle(
-                                                            color: Colors.white),
-                                                      )),
-                                                  onTap: () {
-                                                    print('why not hover');
-                                                    // Update the state of the app.
-                                                    // ...
-                                                  },
-                                                ),//Schedule
-                                                ListTile(
-                                                  title: Center(
-                                                      child: Text(
-                                                    'Subjects',
-                                                    style: TextStyle(
-                                                        color: Colors.white),
-                                                  )),
-                                                  onTap: () {
-                                                    // Update the state of the app.
-                                                    // ...
-                                                  },
-                                                ),//Subjects
-                                                ListTile(
-                                                  title: Center(
-                                                      child: Text(
-                                                        'Tasks',
-                                                        style: TextStyle(
-                                                            color: Colors.white),
-                                                      )),
-                                                  onTap: () {
-                                                    print('why not hover');
-                                                    // Update the state of the app.
-                                                    // ...
-                                                  },
-                                                ),
-
-
+                                                DashboardButton('Dashboard'),
+                                                DashboardButton('Calendar'), //Calendar
+                                                DashboardButton('Grades'), //Grades
+                                                DashboardButton('Schedule'), //Schedule
+                                                DashboardButton('Subjects'), //Subjects
+                                                DashboardButton('Tasks'),
                                               ],
                                             ),
                                           )
@@ -708,9 +641,18 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
-                                                          PriorityTaskCard("Research Titles","Fundamentals of Research",Priority.High),
-                                                          PriorityTaskCard("C# 9 Review","Dot Net",Priority.High),
-                                                          PriorityTaskCard("Read about Augmented Reality","Game Development",Priority.High),
+                                                          PriorityTaskCard(
+                                                              "Research Titles",
+                                                              "Fundamentals of Research",
+                                                              Priority.High),
+                                                          PriorityTaskCard(
+                                                              "C# 9 Review",
+                                                              "Dot Net",
+                                                              Priority.High),
+                                                          PriorityTaskCard(
+                                                              "Read about Augmented Reality",
+                                                              "Game Development",
+                                                              Priority.High),
                                                         ],
                                                       ),
                                                     ),
@@ -724,7 +666,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),//Priority
+                                  ), //Priority
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
@@ -774,10 +716,17 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
-                                                          PinnedTaskCard("Debug","Make Sure there is no bugs"),
-                                                          PinnedTaskCard("Inspect","inspect UI"),
-                                                          PinnedTaskCard("Push","Push to Github"),
-                                                          PinnedTaskCard("Commit","Commit to master branch")
+                                                          PinnedTaskCard(
+                                                              "Debug",
+                                                              "Make Sure there is no bugs"),
+                                                          PinnedTaskCard(
+                                                              "Inspect",
+                                                              "inspect UI"),
+                                                          PinnedTaskCard("Push",
+                                                              "Push to Github"),
+                                                          PinnedTaskCard(
+                                                              "Commit",
+                                                              "Commit to master branch")
                                                         ],
                                                       ),
                                                     ),
@@ -791,7 +740,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),//Pinned
+                                  ), //Pinned
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
@@ -849,7 +798,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                             dense: true,
                                                             trailing: Chip(
                                                               label:
-                                                                  Text("10/20"),
+                                                                  Text("2.5"),
                                                             ),
                                                           ),
                                                           ListTile(
@@ -860,7 +809,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                             dense: true,
                                                             trailing: Chip(
                                                               label:
-                                                                  Text("2/5"),
+                                                                  Text("2.5"),
                                                             ),
                                                           ),
                                                           ListTile(
@@ -871,7 +820,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                             dense: true,
                                                             trailing: Chip(
                                                               label:
-                                                                  Text("3/10"),
+                                                                  Text("2.0"),
                                                             ),
                                                           ),
                                                           ListTile(
@@ -882,7 +831,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                             dense: true,
                                                             trailing: Chip(
                                                               label:
-                                                                  Text("3/10"),
+                                                                  Text("2.25"),
                                                             ),
                                                           )
                                                         ],
@@ -898,7 +847,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       width: 300,
                                       height: 300,
                                     ),
-                                  ),//Schedule
+                                  ), //Schedule
                                   Padding(
                                     padding: const EdgeInsets.all(10),
                                     child: Container(
@@ -944,54 +893,11 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                     padding:
                                                         const EdgeInsets.only(
                                                             top: 15),
-                                                    child: SizedBox(
+                                                    child: Flexible(
                                                       child: ListView(
                                                         shrinkWrap: true,
                                                         children: [
-                                                          ListTile(
-                                                            leading: Icon(
-                                                                Icons.book),
-                                                            title: Text(
-                                                                "Research"),
-                                                            dense: true,
-                                                            trailing: Chip(
-                                                              label:
-                                                                  Text("10/20"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(
-                                                                Icons.book),
-                                                            title: Text(
-                                                                "Computer Organization"),
-                                                            dense: true,
-                                                            trailing: Chip(
-                                                              label:
-                                                                  Text("2/5"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(
-                                                                Icons.book),
-                                                            title: Text(
-                                                                "Application Development"),
-                                                            dense: true,
-                                                            trailing: Chip(
-                                                              label:
-                                                                  Text("3/10"),
-                                                            ),
-                                                          ),
-                                                          ListTile(
-                                                            leading: Icon(
-                                                                Icons.book),
-                                                            title: Text(
-                                                                "Principles Of Programming Language"),
-                                                            dense: true,
-                                                            trailing: Chip(
-                                                              label:
-                                                                  Text("3/10"),
-                                                            ),
-                                                          )
+                                                          CalendarTestWidget()
                                                         ],
                                                       ),
                                                     ),
