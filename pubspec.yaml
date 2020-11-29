@@ -24,11 +24,13 @@ dependencies:
   flutter:
     sdk: flutter
   mysql1: ^0.17.1
-  adobe_xd: ^1.0.0+1
   carousel_slider: ^2.3.1
   table_calendar: ^2.3.1
   timetable: ^0.2.9
   provider: ^4.3.2+2
+  bitsdojo_window: ^0.0.2
+  win32: ^1.7.4
+  fluentui_icons: ^0.2.0
     
 
 
