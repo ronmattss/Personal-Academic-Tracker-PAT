@@ -8,7 +8,14 @@ import 'package:flutter/material.dart';
 class DashboardButton extends StatefulWidget {
   final String buttonTitle;
   final bool isActive;
-  DashboardButton([this.buttonTitle = '', this.isActive = false]);
+  final Widget newWidget;
+  final Widget activeWidget;
+  final Function(Widget) onPressButton;
+  DashboardButton(
+      {this.buttonTitle = '',
+      this.isActive = false,
+      this.onPressButton,
+      this.newWidget, this.activeWidget});
   @override
   State<StatefulWidget> createState() => _DashboardButtonState();
 }
@@ -19,6 +26,7 @@ class _DashboardButtonState extends State<DashboardButton> {
   bool currentState = false;
   @override
   void initState() {
+    print(this.context.widget.toStringShort());
     currentState = widget.isActive;
     currentStateColor = activeStateColor;
     super.initState();
@@ -43,6 +51,7 @@ class _DashboardButtonState extends State<DashboardButton> {
           currentStateColor =
               currentState ? activeStateColor : inactiveStateColor;
           print(currentState);
+          widget.onPressButton(widget.newWidget);
         });
         // Update the state of the app.
         // ...

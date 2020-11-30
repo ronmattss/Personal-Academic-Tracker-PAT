@@ -8,6 +8,7 @@ class SubjectPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _SubjectPageState();
 }
+
 // What this page do
 // show Tasks and To Do
 // Track deliverables
@@ -20,9 +21,13 @@ class _SubjectPageState extends State<SubjectPage> {
     // TODO: implement build
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Subject Title"),
-        ),
-        body:Container(width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,child: DashboardWidget()),);
+      appBar: AppBar(
+        title: Text("Subject Title"),
+      ),
+      body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: DashboardWidget()),
+    );
   }
 }

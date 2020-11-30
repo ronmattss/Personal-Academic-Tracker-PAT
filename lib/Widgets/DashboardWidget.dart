@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
 import 'package:personalacademictracker/Widgets/CalendarTestWidget.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
+import 'package:personalacademictracker/Widgets/Windows/CalendarWidget.dart';
+import 'package:personalacademictracker/Widgets/Windows/DashboardMain.dart';
+import 'package:personalacademictracker/Widgets/Windows/TitlebarButtons.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import 'DashboardButton.dart';
 import 'Windows/Borders.dart';
@@ -21,14 +25,8 @@ class _DashboardWidget extends State<DashboardWidget> {
   double leftWidth = 200;
   double leftWidthCollapsed = 50;
   double drawerWidth = 200;
-  Widget _customBox(BuildContext context, double width, double height,
-      [Color color]) {
-    return Container(
-      width: width,
-      height: height,
-      color: color != null ? color : Colors.transparent,
-    );
-  }
+  String thisShouldChange = "Steve Jobs";
+  Widget rightSideWidget;
 
   void setWidth() {
     if (expanded) {
@@ -37,6 +35,23 @@ class _DashboardWidget extends State<DashboardWidget> {
       drawerWidth = leftWidth;
     }
     expanded = !expanded;
+  }
+
+  @override
+  void initState() {
+    print(thisShouldChange);
+    rightSideWidget = DashboardMain();
+    super.initState();
+  }
+@override
+void didUpdateWidget(covariant DashboardWidget oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+  }
+  void changeRightSideWidget(Widget newWidget) {
+    setState(() {
+      rightSideWidget = newWidget;
+    });
   }
 
   Widget _dashboard(BuildContext context) {
@@ -84,7 +99,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 child: Text(
-                                                  'Steve Jobs',
+                                                  thisShouldChange,
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -104,16 +119,34 @@ class _DashboardWidget extends State<DashboardWidget> {
                                             child: ListView(
                                               shrinkWrap: true,
                                               children: [
-                                                DashboardButton('Dashboard'),
+                                                DashboardButton(isActive: true,
+                                                  buttonTitle: "Dashboard",
+                                                  onPressButton: (var val) =>
+                                                      changeRightSideWidget(
+                                                          val),
+                                                  newWidget:
+                                                      new DashboardMain(),
+                                                ),
                                                 DashboardButton(
-                                                    'Calendar'), //Calendar
+                                                  buttonTitle: 'Calendar',
+                                                  onPressButton: (var val) =>
+                                                      changeRightSideWidget(
+                                                          FractionallySizedBox(
+                                                              child: SizedBox(
+                                                                  child: Center(
+                                                                      child: CalendarWidget())))),
+                                                ), //Calendar
                                                 DashboardButton(
-                                                    'Grades'), //Grades
+                                                    buttonTitle:
+                                                        'Grades'), //Grades
                                                 DashboardButton(
-                                                    'Schedule'), //Schedule
+                                                    buttonTitle:
+                                                        'Schedule'), //Schedule
                                                 DashboardButton(
-                                                    'Subjects'), //Subjects
-                                                DashboardButton('Tasks'),
+                                                    buttonTitle:
+                                                        'Subjects'), //Subjects
+                                                DashboardButton(
+                                                    buttonTitle: 'Tasks'),
                                               ],
                                             ),
                                           )
@@ -141,852 +174,10 @@ class _DashboardWidget extends State<DashboardWidget> {
                                 Expanded(
                                   child: MoveWindow(),
                                 ),
-                                WindowButtons(),
+                                TitlebarButtons(),
                               ],
                             )),
-                            FractionallySizedBox(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 70, top: 125),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Upcoming",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                        fit: FlexFit.tight,
-                                                        child: Material(
-                                                            borderRadius: BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      top: 0),
-                                                              child: SizedBox(
-                                                                child:
-                                                                    CarouselSlider
-                                                                        .builder(
-                                                                  options:
-                                                                      CarouselOptions(
-                                                                    initialPage:
-                                                                        0,
-                                                                    pageSnapping:
-                                                                        true,
-                                                                    enlargeCenterPage:
-                                                                        false,
-                                                                    viewportFraction:
-                                                                        1,
-                                                                    autoPlay:
-                                                                        true,
-                                                                    autoPlayInterval:
-                                                                        Duration(
-                                                                            seconds:
-                                                                                5),
-                                                                    autoPlayAnimationDuration:
-                                                                        Duration(
-                                                                            seconds:
-                                                                                1),
-                                                                    pauseAutoPlayOnTouch:
-                                                                        true,
-                                                                  ),
-                                                                  itemCount: 3,
-                                                                  itemBuilder: (BuildContext
-                                                                              context,
-                                                                          int
-                                                                              itemIndex) =>
-                                                                      Column(
-                                                                          children: [
-                                                                        SizedBox(
-                                                                          height:
-                                                                              50,
-                                                                          child:
-                                                                              DrawerHeader(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsets.only(top: 10),
-                                                                              child: Text(
-                                                                                "TOMORROW",
-                                                                                style: TextStyle(fontSize: 25),
-                                                                              ),
-                                                                            ),
-                                                                            padding:
-                                                                                EdgeInsets.only(top: 0),
-                                                                          ),
-                                                                        ),
-                                                                        Expanded(
-                                                                          //width: 300,
-                                                                          child: ListView(
-                                                                              shrinkWrap: true,
-                                                                              padding: EdgeInsets.all(0),
-                                                                              children: ListTile.divideTiles(context: context, tiles: [
-                                                                                ListTile(
-                                                                                  onTap: () {
-                                                                                    setState(() {
-                                                                                      print("Title");
-                                                                                      setWidth();
-                                                                                    });
-                                                                                  },
-                                                                                  minVerticalPadding: 2,
-                                                                                  subtitle: Text("Deadline: 3:00 PM"),
-                                                                                  title: Text(
-                                                                                    "Sprite Renders",
-                                                                                  ),
-                                                                                  trailing: Icon(Icons.pending_actions_outlined),
-                                                                                ),
-                                                                                ListTile(
-                                                                                  subtitle: Text("Deadline: 3:00 PM"),
-                                                                                  title: Text(
-                                                                                    "Sprite Renders",
-                                                                                  ),
-                                                                                  trailing: Icon(Icons.pending_actions_outlined),
-                                                                                ),
-                                                                                ListTile(
-                                                                                  subtitle: Text("Deadline: 3:00 PM"),
-                                                                                  title: Text(
-                                                                                    "Sprite Renders",
-                                                                                  ),
-                                                                                  trailing: Icon(Icons.pending_actions_outlined),
-                                                                                ),
-                                                                                ListTile(
-                                                                                  subtitle: Text("Deadline: 3:00 PM"),
-                                                                                  title: Text(
-                                                                                    "Sprite Renders",
-                                                                                  ),
-                                                                                  trailing: Icon(Icons.pending_actions_outlined),
-                                                                                ),
-                                                                              ]).toList()),
-                                                                        ),
-                                                                      ]),
-                                                                ),
-                                                              ),
-                                                            )))
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        ), //Deadline Card
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Subjects",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child: SizedBox(
-                                                            child: ListView(
-                                                              shrinkWrap: true,
-                                                              children: [
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Research"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "10/20"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Computer Organization"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "2/5"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Application Development"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "3/10"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Principles Of Programming Language"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "3/10"),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        ), //Subjects Card
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Completed",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child: SizedBox(
-                                                            child: ListView(
-                                                              shrinkWrap: true,
-                                                              children: [
-                                                                TaskCard(
-                                                                    "Make Calculator",
-                                                                    "Scical goes null",
-                                                                    "AppDev"),
-                                                                TaskCard(
-                                                                    "Review Regular Expressions",
-                                                                    "Regex goes  \d^[0-9]",
-                                                                    "Automata"),
-                                                                TaskCard(
-                                                                    "Sap-1 Review",
-                                                                    "binary goes 01000101",
-                                                                    "Comp Org"),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        ), //Completed Card
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Schedule",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child: SizedBox(
-                                                            child: ListView(
-                                                              shrinkWrap: true,
-                                                              children: [
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Research"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "10/20"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Computer Organization"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "2/5"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Application Development"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "3/10"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Principles Of Programming Language"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "3/10"),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Priority",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child: SizedBox(
-                                                            child: ListView(
-                                                              shrinkWrap: true,
-                                                              children: [
-                                                                PriorityTaskCard(
-                                                                    "Research Titles",
-                                                                    "Fundamentals of Research",
-                                                                    Priority
-                                                                        .High),
-                                                                PriorityTaskCard(
-                                                                    "C# 9 Review",
-                                                                    "Dot Net",
-                                                                    Priority
-                                                                        .High),
-                                                                PriorityTaskCard(
-                                                                    "Read about Augmented Reality",
-                                                                    "Game Development",
-                                                                    Priority
-                                                                        .High),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        ), //Priority
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Pinned",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child: SizedBox(
-                                                            child: ListView(
-                                                              shrinkWrap: true,
-                                                              children: [
-                                                                PinnedTaskCard(
-                                                                    "Debug",
-                                                                    "Make Sure there is no bugs"),
-                                                                PinnedTaskCard(
-                                                                    "Inspect",
-                                                                    "inspect UI"),
-                                                                PinnedTaskCard(
-                                                                    "Push",
-                                                                    "Push to Github"),
-                                                                PinnedTaskCard(
-                                                                    "Commit",
-                                                                    "Commit to master branch")
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        ), //Pinned
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Grades",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child: SizedBox(
-                                                            child: ListView(
-                                                              shrinkWrap: true,
-                                                              children: [
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Research"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "2.5"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Computer Organization"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "2.5"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Application Development"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "2.0"),
-                                                                  ),
-                                                                ),
-                                                                ListTile(
-                                                                  leading: Icon(
-                                                                      Icons
-                                                                          .book),
-                                                                  title: Text(
-                                                                      "Principles Of Programming Language"),
-                                                                  dense: true,
-                                                                  trailing:
-                                                                      Chip(
-                                                                    label: Text(
-                                                                        "2.25"),
-                                                                  ),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        ), //Schedule
-                                        Padding(
-                                          padding: const EdgeInsets.all(10),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(25)),
-                                            child: Card(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              elevation: 5,
-                                              margin: EdgeInsets.all(0),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          25)),
-                                              child: SizedBox(
-                                                height: 60,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      child: Text(
-                                                        "Calendar",
-                                                        style: TextStyle(
-                                                            fontSize: 25,
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      padding: EdgeInsets.only(
-                                                          top: 15,
-                                                          left: 8,
-                                                          right: 8,
-                                                          bottom: 5),
-                                                    ),
-                                                    Flexible(
-                                                      fit: FlexFit.tight,
-                                                      child: Material(
-                                                        borderRadius:
-                                                            BorderRadius.only(
-                                                                bottomRight:
-                                                                    Radius
-                                                                        .circular(
-                                                                            25),
-                                                                bottomLeft: Radius
-                                                                    .circular(
-                                                                        25)),
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 15),
-                                                          child:
-                                                              CalendarTestWidget(),
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            width: 300,
-                                            height: 300,
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
+                            AnimatedSwitcher(duration: const Duration(milliseconds: 250),child: rightSideWidget), //,
                           ],
                         ),
                       ),

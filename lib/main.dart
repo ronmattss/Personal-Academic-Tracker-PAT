@@ -26,7 +26,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Personal Academic Tracker',
       home: MyHomePage(title: 'Personal Academic Tracker'),
       theme: CustomThemeData.customTheme,
@@ -47,7 +48,6 @@ class _MyHomePageState extends State<MyHomePage> {
   double width = 0;
   void _incrementCounter() {
     setState(() {
-
       var x = MediaQuery.of(context).size.width;
       width = x;
       _counter++;

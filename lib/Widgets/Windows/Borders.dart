@@ -35,17 +35,14 @@ class RightSide extends StatelessWidget {
             child: Column(children: [
               WindowTitleBarBox(
                   child: Row(children: [
-                    Expanded(child: MoveWindow()),
-                    WindowButtons()
-                  ])),
+                Expanded(child: MoveWindow()),
+                WindowButtons()
+              ])),
             ])));
   }
 }
 
-
-
 class WindowButtons extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     var buttonColors = WindowButtonColors(
@@ -61,9 +58,16 @@ class WindowButtons extends StatelessWidget {
         iconMouseOver: Colors.white);
     return Row(
       children: [
-        MinimizeWindowButton(colors: buttonColors,),
-        MaximizeWindowButton(colors: buttonColors,),
-        CloseWindowButton(colors: closeButtonColors,),
+        MinimizeWindowButton(
+          colors: buttonColors,
+        ),
+        MaximizeWindowButton(
+          colors: buttonColors,
+        ),
+        CloseWindowButton(
+          colors: closeButtonColors,
+        ),
       ],
     );
-  }}
+  }
+}

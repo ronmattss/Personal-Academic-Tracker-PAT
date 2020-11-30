@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class CalendarTestWidget extends StatefulWidget {
+class CalendarWidget extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _CalendarTestWidget();
+  State<StatefulWidget> createState() => _CalendarWidget();
 }
 
-class _CalendarTestWidget extends State<CalendarTestWidget> {
+class _CalendarWidget extends State<CalendarWidget> {
   var _calendarController;
   @override
   void initState() {
@@ -25,8 +25,14 @@ class _CalendarTestWidget extends State<CalendarTestWidget> {
     // TODO: implement build
     return TableCalendar(
       calendarController: _calendarController,
-      calendarStyle: CalendarStyle(outsideDaysVisible: false),
-      headerVisible: false,
+      calendarStyle: CalendarStyle(
+          outsideDaysVisible: true,
+          contentDecoration: BoxDecoration(
+              borderRadius: BorderRadius.zero,
+              border: Border.all(color: Color(0xff000000)),
+              shape: BoxShape.rectangle)),
+      rowHeight: 125,
+      headerVisible: true,
     );
   }
 }
