@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
           color: Theme.of(context).primaryColor,
           width: 1,
           child: DashboardWidget()),
-      drawer: Drawer(
+      /*drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
         children: [
@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           ),
         ],
-      )),
+      )),*/
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',

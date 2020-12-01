@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
+import 'package:personalacademictracker/Views/Windows/SubjectPage.dart';
 import 'package:personalacademictracker/Widgets/CalendarTestWidget.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
 import 'package:personalacademictracker/Widgets/Windows/CalendarWidget.dart';
@@ -43,11 +44,13 @@ class _DashboardWidget extends State<DashboardWidget> {
     rightSideWidget = DashboardMain();
     super.initState();
   }
-@override
-void didUpdateWidget(covariant DashboardWidget oldWidget) {
+
+  @override
+  void didUpdateWidget(covariant DashboardWidget oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
   }
+
   void changeRightSideWidget(Widget newWidget) {
     setState(() {
       rightSideWidget = newWidget;
@@ -119,7 +122,8 @@ void didUpdateWidget(covariant DashboardWidget oldWidget) {
                                             child: ListView(
                                               shrinkWrap: true,
                                               children: [
-                                                DashboardButton(isActive: true,
+                                                DashboardButton(
+                                                  isActive: true,
                                                   buttonTitle: "Dashboard",
                                                   onPressButton: (var val) =>
                                                       changeRightSideWidget(
@@ -134,7 +138,8 @@ void didUpdateWidget(covariant DashboardWidget oldWidget) {
                                                           FractionallySizedBox(
                                                               child: SizedBox(
                                                                   child: Center(
-                                                                      child: CalendarWidget())))),
+                                                                      child:
+                                                                          CalendarWidget())))),
                                                 ), //Calendar
                                                 DashboardButton(
                                                     buttonTitle:
@@ -143,8 +148,12 @@ void didUpdateWidget(covariant DashboardWidget oldWidget) {
                                                     buttonTitle:
                                                         'Schedule'), //Schedule
                                                 DashboardButton(
-                                                    buttonTitle:
-                                                        'Subjects'), //Subjects
+                                                  buttonTitle: 'Subjects',
+                                                  newWidget: new SubjectPage(),
+                                                  onPressButton: (var val) =>
+                                                      changeRightSideWidget(
+                                                          val),
+                                                ), //Subjects
                                                 DashboardButton(
                                                     buttonTitle: 'Tasks'),
                                               ],
@@ -177,7 +186,9 @@ void didUpdateWidget(covariant DashboardWidget oldWidget) {
                                 TitlebarButtons(),
                               ],
                             )),
-                            AnimatedSwitcher(duration: const Duration(milliseconds: 250),child: rightSideWidget), //,
+                            AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 250),
+                                child: rightSideWidget), //,
                           ],
                         ),
                       ),
