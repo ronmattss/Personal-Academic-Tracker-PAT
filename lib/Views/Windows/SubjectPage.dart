@@ -45,9 +45,12 @@ class _SubjectPageState extends State<SubjectPage> {
                             height: 150,
                             child: Card(
                               margin: EdgeInsets.zero,
-                              child: Center(child: Text("Grading Period Goes Here")),
+                              child: Center(
+                                  child: Text("Grading Period Goes Here")),
                             )),
-                        Container(color: Colors.blue,)
+                        Container(
+                          color: Colors.blue,
+                        )
                       ],
                     ),
                   ),
@@ -141,7 +144,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                   ),
                                 )
                               ],
-                            ),
+                            ), // Values of texts
                           ],
                         ),
                       ),
@@ -166,7 +169,7 @@ class _SubjectPageState extends State<SubjectPage> {
                             ],
                           ),
                         ),
-                      )
+                      )// CONTENT HERE
                     ],
                   ),
                 ],
