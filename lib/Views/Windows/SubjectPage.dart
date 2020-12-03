@@ -36,7 +36,6 @@ class _SubjectPageState extends State<SubjectPage> {
                   Container(
                     width: 200,
                     height: MediaQuery.of(context).size.height,
-                    color: Colors.red,
                     child: Column(
                       children: [
                         Container(
@@ -45,11 +44,16 @@ class _SubjectPageState extends State<SubjectPage> {
                             height: 150,
                             child: Card(
                               margin: EdgeInsets.zero,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.zero),
+                              color: Color(0xffDDDDDD),
                               child: Center(
                                   child: Text("Grading Period Goes Here")),
                             )),
                         Container(
-                          color: Colors.blue,
+                          width: 200,
+                          child: FlatButton(child: Text("WEEEEEE"),onPressed: (){},),
+
                         )
                       ],
                     ),
@@ -169,7 +173,7 @@ class _SubjectPageState extends State<SubjectPage> {
                             ],
                           ),
                         ),
-                      )// CONTENT HERE
+                      ) // CONTENT HERE
                     ],
                   ),
                 ],
