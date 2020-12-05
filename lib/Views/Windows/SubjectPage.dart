@@ -357,7 +357,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                             borderRadius:
                                             BorderRadius.circular(25)),
                                         child: SizedBox(
-                                          height: 60,
+                                          height: 70,
                                           child: Column(
                                             children: [
                                               Padding(
