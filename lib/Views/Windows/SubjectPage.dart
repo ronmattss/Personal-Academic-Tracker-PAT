@@ -191,7 +191,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                 ],
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(10),
