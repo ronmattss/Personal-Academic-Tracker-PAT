@@ -244,7 +244,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                         children: [
                                                           PriorityTaskCard(
                                                               "Research Titles",
-                                                              "Fundamentals of Research",
+                                                              "FoR",
                                                               Priority.High),
                                                           PriorityTaskCard(
                                                               "C# 9 Review",
