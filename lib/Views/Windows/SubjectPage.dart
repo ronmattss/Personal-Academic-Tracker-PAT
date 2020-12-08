@@ -248,7 +248,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                               Priority.High),
                                                           PriorityTaskCard(
                                                               "C# 9 Review",
-                                                              "Dot Net",
+                                                              ".Net",
                                                               Priority.High),
                                                           PriorityTaskCard(
                                                               "Read about Augmented Reality",
