@@ -1,18 +1,12 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:personalacademictracker/Preferences/CustomTheme.dart';
 import 'package:personalacademictracker/Views/Windows/SubjectPage.dart';
-import 'package:personalacademictracker/Widgets/CalendarTestWidget.dart';
-import 'package:personalacademictracker/Widgets/TaskCard.dart';
 import 'package:personalacademictracker/Widgets/Windows/CalendarWidget.dart';
 import 'package:personalacademictracker/Widgets/Windows/DashboardMain.dart';
 import 'package:personalacademictracker/Widgets/Windows/TitlebarButtons.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 import 'DashboardButton.dart';
-import 'Windows/Borders.dart';
 
 //TODO: Add Subject,Task,Todo,Trackers,statistics,Subject page,other Dashboard Stuff, Profile, Statistics
 //TODO: Resizable Widgets based on Screen size
@@ -186,9 +180,11 @@ class _DashboardWidget extends State<DashboardWidget> {
                                 TitlebarButtons(),
                               ],
                             )),
-                            AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 250),
-                                child: rightSideWidget), //,
+                            Expanded(
+                              child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 250),
+                                  child: rightSideWidget),
+                            ), //,
                           ],
                         ),
                       ),

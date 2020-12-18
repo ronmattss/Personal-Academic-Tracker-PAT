@@ -3,17 +3,17 @@
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'file:///E:/Programming_Stuff/Dart/Flutter/Database_Project/Personal%20Academic%20Tracker/personalacademictracker/lib/Views/Windows/SubjectPage.dart';
 
 class TaskCard extends StatefulWidget {
   final String taskTitle;
   final String taskSubtitle;
   final String taskSubject;
+
   TaskCard(
       [this.taskTitle = 'taskTitle',
       this.taskSubtitle = 'taskSubtitle',
       this.taskSubject = 'subject']);
+
   @override
   State<StatefulWidget> createState() => _TaskCardState();
 }
@@ -24,6 +24,7 @@ class _TaskCardState extends State<TaskCard> {
   Text textIfNotChecked;
   Text textIfChecked;
   Text currentText;
+
   @override
   void initState() {
     textIfNotChecked =
@@ -78,6 +79,7 @@ class PriorityTaskCard extends StatefulWidget {
   final String taskSubject;
   final Priority taskPriority;
   final bool isTaskFinished;
+
   PriorityTaskCard(
       [this.taskTitle = 'taskTitle',
       this.taskSubject = 'taskSubject',
@@ -94,6 +96,7 @@ class _PriorityTaskCard extends State<PriorityTaskCard> {
   Text textIfNotChecked;
   Text textIfChecked;
   Text currentText;
+
   @override
   void initState() {
     textIfNotChecked =
@@ -144,6 +147,7 @@ class PinnedTaskCard extends StatefulWidget {
   final String taskTitle;
   final String taskSubject;
   final bool isTaskFinished;
+
   PinnedTaskCard(
       [this.taskTitle = 'taskTitle',
       this.taskSubject = 'taskSubject',
@@ -160,6 +164,7 @@ class _PinnedTaskCardState extends State<PinnedTaskCard> {
   Text textIfChecked;
   Text currentText;
   Icon icon = new Icon(Icons.pin_drop);
+
   @override
   void initState() {
     isFinished = widget.isTaskFinished;

@@ -25,7 +25,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -62,86 +62,86 @@ class _DashboardMain extends State<DashboardMain> {
                                             viewportFraction: 1,
                                             autoPlay: true,
                                             autoPlayInterval:
-                                            Duration(seconds: 5),
+                                                Duration(seconds: 5),
                                             autoPlayAnimationDuration:
-                                            Duration(seconds: 1),
+                                                Duration(seconds: 1),
                                             pauseAutoPlayOnTouch: true,
                                           ),
                                           itemCount: 3,
                                           itemBuilder: (BuildContext context,
-                                              int itemIndex) =>
+                                                  int itemIndex) =>
                                               Column(children: [
-                                                SizedBox(
-                                                  height: 50,
-                                                  child: DrawerHeader(
-                                                    child: Padding(
-                                                      padding:
+                                            SizedBox(
+                                              height: 50,
+                                              child: DrawerHeader(
+                                                child: Padding(
+                                                  padding:
                                                       const EdgeInsets.only(
                                                           top: 10),
-                                                      child: Text(
-                                                        "TOMORROW",
-                                                        style:
+                                                  child: Text(
+                                                    "TOMORROW",
+                                                    style:
                                                         TextStyle(fontSize: 25),
-                                                      ),
-                                                    ),
-                                                    padding:
-                                                    EdgeInsets.only(top: 0),
                                                   ),
                                                 ),
-                                                Expanded(
-                                                  //width: 300,
-                                                  child: ListView(
-                                                      shrinkWrap: true,
-                                                      padding: EdgeInsets.all(0),
-                                                      children:
+                                                padding:
+                                                    EdgeInsets.only(top: 0),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              //width: 300,
+                                              child: ListView(
+                                                  shrinkWrap: true,
+                                                  padding: EdgeInsets.all(0),
+                                                  children:
                                                       ListTile.divideTiles(
                                                           context: context,
                                                           tiles: [
-                                                            ListTile(
-                                                              onTap: () {
-                                                                setState(() {
-                                                                  print("Title");
-                                                                });
-                                                              },
-                                                              minVerticalPadding: 2,
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
-                                                            ),
-                                                            ListTile(
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
-                                                            ),
-                                                            ListTile(
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
-                                                            ),
-                                                            ListTile(
-                                                              subtitle: Text(
-                                                                  "Deadline: 3:00 PM"),
-                                                              title: Text(
-                                                                "Sprite Renders",
-                                                              ),
-                                                              trailing: Icon(Icons
-                                                                  .pending_actions_outlined),
-                                                            ),
-                                                          ]).toList()),
-                                                ),
-                                              ]),
+                                                        ListTile(
+                                                          onTap: () {
+                                                            setState(() {
+                                                              print("Title");
+                                                            });
+                                                          },
+                                                          minVerticalPadding: 2,
+                                                          subtitle: Text(
+                                                              "Deadline: 3:00 PM"),
+                                                          title: Text(
+                                                            "Sprite Renders",
+                                                          ),
+                                                          trailing: Icon(Icons
+                                                              .pending_actions_outlined),
+                                                        ),
+                                                        ListTile(
+                                                          subtitle: Text(
+                                                              "Deadline: 3:00 PM"),
+                                                          title: Text(
+                                                            "Sprite Renders",
+                                                          ),
+                                                          trailing: Icon(Icons
+                                                              .pending_actions_outlined),
+                                                        ),
+                                                        ListTile(
+                                                          subtitle: Text(
+                                                              "Deadline: 3:00 PM"),
+                                                          title: Text(
+                                                            "Sprite Renders",
+                                                          ),
+                                                          trailing: Icon(Icons
+                                                              .pending_actions_outlined),
+                                                        ),
+                                                        ListTile(
+                                                          subtitle: Text(
+                                                              "Deadline: 3:00 PM"),
+                                                          title: Text(
+                                                            "Sprite Renders",
+                                                          ),
+                                                          trailing: Icon(Icons
+                                                              .pending_actions_outlined),
+                                                        ),
+                                                      ]).toList()),
+                                            ),
+                                          ]),
                                         ),
                                       ),
                                     )))
@@ -157,7 +157,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -208,7 +208,7 @@ class _DashboardMain extends State<DashboardMain> {
                                         ListTile(
                                           leading: Icon(Icons.book),
                                           title:
-                                          Text("Application Development"),
+                                              Text("Application Development"),
                                           dense: true,
                                           trailing: Chip(
                                             label: Text("3/10"),
@@ -241,7 +241,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -297,7 +297,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -348,7 +348,7 @@ class _DashboardMain extends State<DashboardMain> {
                                         ListTile(
                                           leading: Icon(Icons.book),
                                           title:
-                                          Text("Application Development"),
+                                              Text("Application Development"),
                                           dense: true,
                                           trailing: Chip(
                                             label: Text("3/10"),
@@ -385,7 +385,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -445,7 +445,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -502,7 +502,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,
@@ -553,7 +553,7 @@ class _DashboardMain extends State<DashboardMain> {
                                         ListTile(
                                           leading: Icon(Icons.book),
                                           title:
-                                          Text("Application Development"),
+                                              Text("Application Development"),
                                           dense: true,
                                           trailing: Chip(
                                             label: Text("2.0"),
@@ -586,7 +586,7 @@ class _DashboardMain extends State<DashboardMain> {
                   padding: const EdgeInsets.all(10),
                   child: Container(
                     decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(25)),
+                        BoxDecoration(borderRadius: BorderRadius.circular(25)),
                     child: Card(
                       color: Theme.of(context).primaryColor,
                       elevation: 5,

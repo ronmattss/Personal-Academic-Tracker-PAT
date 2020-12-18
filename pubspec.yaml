@@ -31,7 +31,7 @@ dependencies:
   bitsdojo_window: ^0.0.2
   win32: ^1.7.4
   fluentui_icons: ^0.2.0
-    
+
 
 
   # The following adds the Cupertino Icons font to your application.

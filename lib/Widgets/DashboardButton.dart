@@ -11,11 +11,14 @@ class DashboardButton extends StatefulWidget {
   final Widget newWidget;
   final Widget activeWidget;
   final Function(Widget) onPressButton;
+
   DashboardButton(
       {this.buttonTitle = '',
       this.isActive = false,
       this.onPressButton,
-      this.newWidget, this.activeWidget});
+      this.newWidget,
+      this.activeWidget});
+
   @override
   State<StatefulWidget> createState() => _DashboardButtonState();
 }
@@ -24,6 +27,7 @@ class _DashboardButtonState extends State<DashboardButton> {
   Color activeStateColor = Colors.white;
   Color currentStateColor;
   bool currentState = false;
+
   @override
   void initState() {
     print(this.context.widget.toStringShort());

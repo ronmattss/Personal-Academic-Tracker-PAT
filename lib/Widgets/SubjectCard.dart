@@ -4,11 +4,13 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///E:/Programming_Stuff/Dart/Flutter/Database_Project/Personal%20Academic%20Tracker/personalacademictracker/lib/Views/Windows/SubjectPage.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
+
+import 'file:///E:/Programming_Stuff/Dart/Flutter/Database_Project/Personal%20Academic%20Tracker/personalacademictracker/lib/Views/Windows/SubjectPage.dart';
 
 class SubjectCard extends StatefulWidget {
   const SubjectCard({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _SubjectCardState();
 }

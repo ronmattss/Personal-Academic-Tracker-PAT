@@ -2,12 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
+import 'package:personalacademictracker/Widgets/ScoreCard.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
 
 // Thie Page is the expanded version of the Lists
 class SubjectPage extends StatefulWidget {
   SubjectPage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _SubjectPageState();
 }
@@ -58,7 +59,8 @@ class _SubjectPageState extends State<SubjectPage> {
                             child: Text("WEEEEEE"),
                             onPressed: () {},
                           ),
-                        ), // Placeholder button, gonna change it later to smaller widgets
+                        ),
+                        // Placeholder button, gonna change it later to smaller widgets
                         Container(
                           width: 200,
                           height: 50,
@@ -265,7 +267,9 @@ class _SubjectPageState extends State<SubjectPage> {
                                         ),
                                       ),
                                       width: 300,
-                                      height: 300,
+                                      height:
+                                          MediaQuery.of(context).size.height -
+                                              310,
                                     ),
                                   ),
                                   Padding(
@@ -273,14 +277,14 @@ class _SubjectPageState extends State<SubjectPage> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
+                                              BorderRadius.circular(25)),
                                       child: Card(
                                         color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 60,
                                           child: Column(
@@ -302,17 +306,17 @@ class _SubjectPageState extends State<SubjectPage> {
                                                 fit: FlexFit.tight,
                                                 child: Material(
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomRight:
-                                                      Radius.circular(
-                                                          25),
-                                                      bottomLeft:
-                                                      Radius.circular(
-                                                          25)),
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
                                                     padding:
-                                                    const EdgeInsets.only(
-                                                        top: 15),
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
@@ -329,6 +333,9 @@ class _SubjectPageState extends State<SubjectPage> {
                                                               "Read about Augmented Reality",
                                                               "Game Development",
                                                               Priority.High),
+                                                          ScoreCard(activityTitle: "Activity",activityDescription: "This is a description",activityScore: "20/20",
+                                                              ),
+                                                          ScoreCard(activityTitle: "Activity 2",activityDescription: "This is a description",activityScore: "12/20",)
                                                         ],
                                                       ),
                                                     ),
@@ -340,7 +347,9 @@ class _SubjectPageState extends State<SubjectPage> {
                                         ),
                                       ),
                                       width: 300,
-                                      height: 300,
+                                      height:
+                                          MediaQuery.of(context).size.height -
+                                              310,
                                     ),
                                   ),
                                   Padding(
@@ -348,14 +357,14 @@ class _SubjectPageState extends State<SubjectPage> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(25)),
+                                              BorderRadius.circular(25)),
                                       child: Card(
                                         color: Theme.of(context).primaryColor,
                                         elevation: 5,
                                         margin: EdgeInsets.all(0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(25)),
+                                                BorderRadius.circular(25)),
                                         child: SizedBox(
                                           height: 70,
                                           child: Column(
@@ -377,17 +386,17 @@ class _SubjectPageState extends State<SubjectPage> {
                                                 fit: FlexFit.tight,
                                                 child: Material(
                                                   borderRadius:
-                                                  BorderRadius.only(
-                                                      bottomRight:
-                                                      Radius.circular(
-                                                          25),
-                                                      bottomLeft:
-                                                      Radius.circular(
-                                                          25)),
+                                                      BorderRadius.only(
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  25),
+                                                          bottomLeft:
+                                                              Radius.circular(
+                                                                  25)),
                                                   child: Padding(
                                                     padding:
-                                                    const EdgeInsets.only(
-                                                        top: 15),
+                                                        const EdgeInsets.only(
+                                                            top: 15),
                                                     child: SizedBox(
                                                       child: ListView(
                                                         shrinkWrap: true,
@@ -415,10 +424,11 @@ class _SubjectPageState extends State<SubjectPage> {
                                         ),
                                       ),
                                       width: 300,
-                                      height: 300,
+                                      height:
+                                          MediaQuery.of(context).size.height -
+                                              310,
                                     ),
                                   ),
-
                                 ],
                               ),
                             ],

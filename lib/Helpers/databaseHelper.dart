@@ -25,14 +25,14 @@ class DatabaseHelper {
  * DESKTOP-CJ5D09Q
  * port 3306
  * Socket MySQL
- * user root 
- * 
+ * user root
+ *
  * var settings = new ConnectionSettings(
-  host: 'localhost', 
-  port: 3306,
-  user: 'bob',
-  password: 'wibble',
-  db: 'mydb'
-);
- * 
+    host: 'localhost',
+    port: 3306,
+    user: 'bob',
+    password: 'wibble',
+    db: 'mydb'
+    );
+ *
  */

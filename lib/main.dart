@@ -1,11 +1,10 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
 import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
 import 'package:personalacademictracker/Widgets/SubjectCard.dart';
-import 'package:personalacademictracker/Helpers/databaseHelper.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 
 Future<void> main() async {
   // var connection = new DatabaseHelper();
@@ -46,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   double width = 0;
+
   void _incrementCounter() {
     setState(() {
       var x = MediaQuery.of(context).size.width;
