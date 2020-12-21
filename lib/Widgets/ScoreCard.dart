@@ -1,5 +1,4 @@
-//Contains To do List which is an individual Task which also contains list of sub to do on that task
-
+// This is a Card that shows the Score of a given tracked Activity, Project... etc
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

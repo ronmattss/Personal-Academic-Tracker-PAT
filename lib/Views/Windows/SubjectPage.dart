@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Widgets/ScoreCard.dart';
+import 'package:personalacademictracker/Widgets/SubjectCard.dart';
+import 'package:personalacademictracker/Widgets/SubjectPage/TaskView.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
 
 // Thie Page is the expanded version of the Lists
@@ -181,257 +183,26 @@ class _SubjectPageState extends State<SubjectPage> {
                           width: MediaQuery.of(context).size.width - 400 - 2,
                           height: 200,
                           color: Colors.yellow,
-                          child: Column(
-                            children: [
-                              Row(
+                          child: DefaultTabController(
+                            length: 3,
+                            child: Scaffold(
+                              appBar: AppBar(
+                                title: TabBar(
+                                  tabs: [
+                                    Tab(text: "Title",),
+                                    Tab(text: "Title"),
+                                    Tab(text: "Title"),
+                                  ],
+                                ),
+                              ),
+                              body: TabBarView(
                                 children: [
-                                  Expanded(
-                                      child: Card(
-                                    margin: EdgeInsets.zero,
-                                    child: AppBar(),
-                                  ))
+                                  TaskView(),
+                                  Icon(Icons.directions_transit),
+                                  Icon(Icons.directions_bike),
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25)),
-                                      child: Card(
-                                        color: Theme.of(context).primaryColor,
-                                        elevation: 5,
-                                        margin: EdgeInsets.all(0),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                child: Text(
-                                                  "Tasks",
-                                                  style: TextStyle(
-                                                      fontSize: 25,
-                                                      color: Colors.white),
-                                                ),
-                                                padding: EdgeInsets.only(
-                                                    top: 15,
-                                                    left: 8,
-                                                    right: 8,
-                                                    bottom: 5),
-                                              ),
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                child: Material(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  25)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15),
-                                                    child: SizedBox(
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: [
-                                                          PriorityTaskCard(
-                                                              "Research Titles",
-                                                              "FoR",
-                                                              Priority.High),
-                                                          PriorityTaskCard(
-                                                              "C# 9 Review",
-                                                              ".Net",
-                                                              Priority.High),
-                                                          PriorityTaskCard(
-                                                              "Read about Augmented Reality",
-                                                              "Game Development",
-                                                              Priority.High),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      width: 300,
-                                      height:
-                                          MediaQuery.of(context).size.height -
-                                              310,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25)),
-                                      child: Card(
-                                        color: Theme.of(context).primaryColor,
-                                        elevation: 5,
-                                        margin: EdgeInsets.all(0),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: SizedBox(
-                                          height: 60,
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                child: Text(
-                                                  "Activities",
-                                                  style: TextStyle(
-                                                      fontSize: 25,
-                                                      color: Colors.white),
-                                                ),
-                                                padding: EdgeInsets.only(
-                                                    top: 15,
-                                                    left: 8,
-                                                    right: 8,
-                                                    bottom: 5),
-                                              ),
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                child: Material(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  25)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15),
-                                                    child: SizedBox(
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: [
-                                                          PriorityTaskCard(
-                                                              "Research Titles",
-                                                              "Fundamentals of Research",
-                                                              Priority.High),
-                                                          PriorityTaskCard(
-                                                              "C# 9 Review",
-                                                              "Dot Net",
-                                                              Priority.High),
-                                                          PriorityTaskCard(
-                                                              "Read about Augmented Reality",
-                                                              "Game Development",
-                                                              Priority.High),
-                                                          ScoreCard(activityTitle: "Activity",activityDescription: "This is a description",activityScore: "20/20",
-                                                              ),
-                                                          ScoreCard(activityTitle: "Activity 2",activityDescription: "This is a description",activityScore: "12/20",)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      width: 300,
-                                      height:
-                                          MediaQuery.of(context).size.height -
-                                              310,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25)),
-                                      child: Card(
-                                        color: Theme.of(context).primaryColor,
-                                        elevation: 5,
-                                        margin: EdgeInsets.all(0),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(25)),
-                                        child: SizedBox(
-                                          height: 70,
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                child: Text(
-                                                  "Assignments",
-                                                  style: TextStyle(
-                                                      fontSize: 25,
-                                                      color: Colors.white),
-                                                ),
-                                                padding: EdgeInsets.only(
-                                                    top: 15,
-                                                    left: 8,
-                                                    right: 8,
-                                                    bottom: 5),
-                                              ),
-                                              Flexible(
-                                                fit: FlexFit.tight,
-                                                child: Material(
-                                                  borderRadius:
-                                                      BorderRadius.only(
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  25),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  25)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            top: 15),
-                                                    child: SizedBox(
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: [
-                                                          PriorityTaskCard(
-                                                              "Research Titles",
-                                                              "Fundamentals of Research",
-                                                              Priority.High),
-                                                          PriorityTaskCard(
-                                                              "C# 9 Review",
-                                                              "Dot Net",
-                                                              Priority.High),
-                                                          PriorityTaskCard(
-                                                              "Read about Augmented Reality",
-                                                              "Game Development",
-                                                              Priority.High),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      width: 300,
-                                      height:
-                                          MediaQuery.of(context).size.height -
-                                              310,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ) // CONTENT HERE
