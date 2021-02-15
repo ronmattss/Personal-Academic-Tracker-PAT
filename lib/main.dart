@@ -1,16 +1,17 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
 import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
 import 'package:personalacademictracker/Widgets/SubjectCard.dart';
 
+import 'Helpers/databaseHelper.dart';
+
 Future<void> main() async {
-  // var connection = new DatabaseHelper();
-//   print(await connection.connectDB());
+   var connection = new DatabaseHelper();
+   var results = await connection.connectDB("SELECT * FROM patdb.profile_table;");
+   print(results.first);
   runApp(MyApp());
-  doWhenWindowReady(() {
+/*  doWhenWindowReady(() {
     var win = appWindow;
     var initialSize = Size(1680, 900);
     win.minSize = initialSize;
@@ -18,7 +19,7 @@ Future<void> main() async {
     win.alignment = Alignment.center;
     win.title = "Custom window with Flutter";
     win.show();
-  });
+  });*/
 }
 
 class MyApp extends StatelessWidget {
@@ -54,35 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Widget _customCarousel(BuildContext context) {
-    return CarouselSlider.builder(
-        options: CarouselOptions(height: 600),
-        itemCount: 15,
-        itemBuilder: (BuildContext context, int itemIndex) => Container(
-              child: SubjectCard(),
-            ));
-  }
-
-  Widget _customCardList(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: 9,
-      itemBuilder: (BuildContext context, int itemIndex) => Container(
-        child: SubjectCard(),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       /* appBar: AppBar(elevation: 0,
         title: Text(widget.title),
       ),*/
-      body: WindowBorder(
-          color: Theme.of(context).primaryColor,
-          width: 1,
-          child: DashboardWidget()),
+      body: DashboardWidget(),
       /*drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,

@@ -3,7 +3,10 @@ import 'package:mysql1/mysql1.dart';
 import 'package:personalacademictracker/Helpers/settings.dart';
 
 class DatabaseHelper {
-  Future<String> connectDB() async {
+  MySqlConnection connection;
+  //Future<Results> queryResults;
+  Future<Results> connectDB(String query) async {
+    Results queryResult;
     String pass = SettingsDB.passowrd;
     var settings = new ConnectionSettings(
         host: '127.0.0.1',
@@ -11,14 +14,19 @@ class DatabaseHelper {
         user: 'root',
         db: 'patdb',
         password: pass);
-    var conn = await MySqlConnection.connect(settings);
-    var testPrint = await conn.query(
-        "SELECT * FROM patdb.accounttable;"); // gonna need a SQL String for custom SQL statements
+     connection = await MySqlConnection.connect(settings);
+    var testPrint = await connection.query(
+        "SELECT * FROM patdb.profile_table;"); // gonna need a SQL String for custom SQL statements
     for (var row in testPrint) {
-      print("Username: ${row[0]} Password: ${row[1]}");
+      // prints
+      // print("Username: ${row[0]} Password: ${row[1]} Last Name:${row[2]} First Name:${row[3]} Middle Name:${row[4]} Date:${row[5]}");
+      print(row.values);
     }
-    return conn.toString();
+
+    queryResult = await connection.query(query);
+    return queryResult;
   }
+
 }
 
 /**

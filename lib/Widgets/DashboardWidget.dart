@@ -1,9 +1,7 @@
-import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Views/Windows/SubjectPage.dart';
-import 'package:personalacademictracker/Widgets/Windows/CalendarWidget.dart';
-import 'package:personalacademictracker/Widgets/Windows/DashboardMain.dart';
+import 'package:personalacademictracker/Widgets/SubjectButtonBuilder.dart';
 import 'package:personalacademictracker/Widgets/Windows/TitlebarButtons.dart';
 
 import 'DashboardButton.dart';
@@ -35,7 +33,7 @@ class _DashboardWidget extends State<DashboardWidget> {
   @override
   void initState() {
     print(thisShouldChange);
-    rightSideWidget = DashboardMain();
+    rightSideWidget = SubjectPage();
     super.initState();
   }
 
@@ -58,7 +56,7 @@ class _DashboardWidget extends State<DashboardWidget> {
       child: Row(children: [
         Expanded(
             child: Container(
-                color: Color(0xffDDDDDD),
+                color: Color(0xffDDDDDD),padding: EdgeInsets.zero,margin: EdgeInsets.zero,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -66,16 +64,16 @@ class _DashboardWidget extends State<DashboardWidget> {
                       Row(
                         children: [
                           Container(
-                            color: Colors.white70,
+                            color: Colors.white,
                             width: drawerWidth,
-                            height: MediaQuery.of(context).size.height - 2,
+                            height: MediaQuery.of(context).size.height,
                             child: Column(
                               children: [
-                                WindowTitleBarBox(
+                               /* WindowTitleBarBox(*//*
                                     child: MoveWindow(
                                         child: Container(
                                   color: Theme.of(context).primaryColor,
-                                ))),
+                                )))*//*,*/
                                 Expanded(
                                   child: Card(
                                     shape:
@@ -86,6 +84,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                       child: ListView(
                                         padding: EdgeInsets.all(0),
                                         children: [
+                                          // profile Box XD
                                           DrawerHeader(
                                             child: Column(children: [
                                               CircleAvatar(
@@ -108,50 +107,13 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                   .primaryColor,
                                             ),
                                           ),
+                                          // Here goes Subject Buttons
                                           Card(
                                             margin: EdgeInsets.zero,
                                             color:
                                                 Theme.of(context).primaryColor,
                                             elevation: 0,
-                                            child: ListView(
-                                              shrinkWrap: true,
-                                              children: [
-                                                DashboardButton(
-                                                  isActive: true,
-                                                  buttonTitle: "Dashboard",
-                                                  onPressButton: (var val) =>
-                                                      changeRightSideWidget(
-                                                          val),
-                                                  newWidget:
-                                                      new DashboardMain(),
-                                                ),
-                                                DashboardButton(
-                                                  buttonTitle: 'Calendar',
-                                                  onPressButton: (var val) =>
-                                                      changeRightSideWidget(
-                                                          FractionallySizedBox(
-                                                              child: SizedBox(
-                                                                  child: Center(
-                                                                      child:
-                                                                          CalendarWidget())))),
-                                                ), //Calendar
-                                                DashboardButton(
-                                                    buttonTitle:
-                                                        'Grades'), //Grades
-                                                DashboardButton(
-                                                    buttonTitle:
-                                                        'Schedule'), //Schedule
-                                                DashboardButton(
-                                                  buttonTitle: 'Subjects',
-                                                  newWidget: new SubjectPage(),
-                                                  onPressButton: (var val) =>
-                                                      changeRightSideWidget(
-                                                          val),
-                                                ), //Subjects
-                                                DashboardButton(
-                                                    buttonTitle: 'Tasks'),
-                                              ],
-                                            ),
+                                            child:SubjectListBuilder(),
                                           )
                                         ],
                                       ),
@@ -166,12 +128,12 @@ class _DashboardWidget extends State<DashboardWidget> {
                     ]),
                     Column(children: [
                       Container(
-                        height: MediaQuery.of(context).size.height - 2,
+                        height: MediaQuery.of(context).size.height,
                         width:
                             MediaQuery.of(context).size.width - drawerWidth - 2,
                         child: Column(
                           children: [
-                            WindowTitleBarBox(
+                           /* WindowTitleBarBox(
                                 child: Row(
                               children: [
                                 Expanded(
@@ -179,7 +141,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                 ),
                                 TitlebarButtons(),
                               ],
-                            )),
+                            )),*/
                             Expanded(
                               child: AnimatedSwitcher(
                                   duration: const Duration(milliseconds: 250),
@@ -194,6 +156,7 @@ class _DashboardWidget extends State<DashboardWidget> {
       ]),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {

@@ -45,10 +45,11 @@ class _DashboardButtonState extends State<DashboardButton> {
       contentPadding: EdgeInsets.symmetric(horizontal: 1),
       horizontalTitleGap: 1,
       title: Center(
-          child: Text(
-        widget.buttonTitle,
-        style: TextStyle(color: Colors.white),
-      )),
+        child: Text(
+          widget.buttonTitle,
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       onTap: () {
         setState(() {
           currentState = !currentState;

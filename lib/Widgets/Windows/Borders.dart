@@ -1,3 +1,4 @@
+/*
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:flutter/material.dart';
 
@@ -29,8 +30,7 @@ class RightSide extends StatelessWidget {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [backgroundStartColor, backgroundEndColor],
-                  stops: [0.0, 1.0]),
+              ),
             ),
             child: Column(children: [
               WindowTitleBarBox(
@@ -71,3 +71,4 @@ class WindowButtons extends StatelessWidget {
     );
   }
 }
+*/
