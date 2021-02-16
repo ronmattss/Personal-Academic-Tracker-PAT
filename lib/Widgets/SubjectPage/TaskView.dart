@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
+import 'package:personalacademictracker/Widgets/Windows/ToDoCard.dart';
 
 //TaskView shows the list of tasks
 // with to do list inside
@@ -64,13 +65,17 @@ class _TaskViewState extends State<TaskView> with AutomaticKeepAliveClientMixin<
                 value: 10,
                 minHeight: 5,
                 backgroundColor: Colors.blueGrey,
-              ),
+              ),onTap: (){setState(() {
+                print("title");
+              });},
             );
           },
           body: SizedBox(
               height: 300,
-              child: _listOfTaskCard(
-                  context)) /*ListTile(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Task Description: Fields: {studentID: 2018-01405-MN-0, password: password, lastName: Rivera, firstName: RonMatthew, middleName: Requero, birthDate: 2000-02-18 16:00:00.000Z} ",style: TextStyle(fontSize: 20),),
+              )) /*ListTile(
             title: Text(value.expandedValue),
             subtitle: Text("To delete this panel, tap the trash can icon"),
             trailing: Icon(Icons.delete),

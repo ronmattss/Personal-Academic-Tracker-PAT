@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personalacademictracker/Views/Windows/SubjectDescriptionWidget.dart';
 import 'package:personalacademictracker/Widgets/ScoreCard.dart';
 import 'package:personalacademictracker/Widgets/SubjectCard.dart';
 import 'package:personalacademictracker/Widgets/SubjectPage/TaskView.dart';
@@ -19,6 +20,9 @@ class SubjectPage extends StatefulWidget {
 // show Tasks and To Do
 // Track deliverables
 class _SubjectPageState extends State<SubjectPage> {
+  final List<Map> myProducts =
+      List.generate(5, (index) => {"id": index, "Testing some cool Flutter UI widgets IDK WHAT AM I DOING LMAOOOOOOOOOOOOOOO": "Product $index"})
+          .toList();
   // Crate left side Nav menu, right side le task
   @override
   Widget build(BuildContext context) {
@@ -29,7 +33,7 @@ class _SubjectPageState extends State<SubjectPage> {
         children: [
           Expanded(
             child: Container(
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
               margin: EdgeInsets.zero,
               width: 200,
               height: MediaQuery.of(context).size.height,
@@ -65,15 +69,26 @@ class _SubjectPageState extends State<SubjectPage> {
                                         CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Container(padding: EdgeInsets.only(left:  10,),
-                                        height:55,
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                          left: 10,
+                                        ),
+                                        height: 55,
                                         width: 300,
-                                        child: Text("Subject: Programming 1",style: TextStyle(fontSize: 20),maxLines: 2,),
-                                      ),Container(padding: EdgeInsets.only(left:  10),
-                                        height:45,
-                                        child: Text("Projected Grade: 1.75 ",style: TextStyle(fontSize: 20),),
+                                        child: Text(
+                                          "Subject: Programming 1",
+                                          style: TextStyle(fontSize: 20),
+                                          maxLines: 2,
+                                        ),
                                       ),
-
+                                      Container(
+                                        padding: EdgeInsets.only(left: 10),
+                                        height: 45,
+                                        child: Text(
+                                          "Projected Grade: 1.75 ",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                      ),
                                       SizedBox(
                                         width: 300,
                                         child: Column(
@@ -140,183 +155,98 @@ class _SubjectPageState extends State<SubjectPage> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                SubjectDescriptionWidget(),
                                 Container(
-                                    color: Theme.of(context).primaryColor,
-                                    height: 150,
-                                    padding: EdgeInsets.only(left: 20, top: 30),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            // Texts For Descriptions
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Task:",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  " Clean  Database",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Todos:",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  " 10/50",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  "Status: ",
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  "Complete",
-                                                  style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 20),
-                                                )
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          width: 200,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                // Texts
-                                                Row(
+                                  height:
+                                      MediaQuery.of(context).size.height - 150,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Padding(padding: EdgeInsets.all(8.0),
+                                    child: GridView.builder(
+                                      gridDelegate:
+                                          SliverGridDelegateWithMaxCrossAxisExtent(
+                                              maxCrossAxisExtent: 370,
+                                              childAspectRatio: 1/1,
+                                              crossAxisSpacing: 20,
+                                              mainAxisSpacing: 20),
+                                      itemCount: myProducts.length,
+                                      itemBuilder: (BuildContext ctx, index) {
+                                        return Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25)),
+                                            child: Card(
+                                              color: Theme.of(context)
+                                                  .primaryColor,
+                                              elevation: 5,
+                                              margin: EdgeInsets.all(0),
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          25)),
+                                              child: SizedBox(
+                                                height: 60,
+                                                child: Column(
                                                   children: [
-                                                    Container(
-                                                      width: 500,
-                                                      child: Text(
-                                                        "Task Description: Some Description Here",
-                                                        maxLines: 4,
-                                                        textDirection:
-                                                            TextDirection.ltr,
-                                                        style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 20),
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
+                                                    Padding(
+                                                      child: ToDoCard(),
+                                                      padding: EdgeInsets.only(
+                                                          top: 15,
+                                                          left: 8,
+                                                          right: 8,
+                                                          bottom: 5),
+                                                    ),
+                                                    Flexible(
+                                                      fit: FlexFit.tight,
+                                                      child: Material(
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                                bottomRight:
+                                                                    Radius
+                                                                        .circular(
+                                                                            25),
+                                                                bottomLeft: Radius
+                                                                    .circular(
+                                                                        25)),
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  top: 5,
+                                                                  left: 5),
+                                                          child: SizedBox(
+                                                            child: ListView(
+                                                              shrinkWrap: true,
+                                                              children: [
+                                                                Text(
+                                                                  "${myProducts[index]}",
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          20,
+                                                                      color: Colors
+                                                                          .black),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
                                                       ),
                                                     )
                                                   ],
                                                 ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                    )),
-                                // To do / Trackable Container
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.circular(25)),
-                                    child: Card(
-                                      color: Theme.of(context).primaryColor,
-                                      elevation: 5,
-                                      margin: EdgeInsets.all(0),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(25)),
-                                      child: SizedBox(
-                                        height: 60,
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              child: Text(
-                                                "Completed",
-                                                style: TextStyle(
-                                                    fontSize: 25,
-                                                    color: Colors.white),
                                               ),
-                                              padding: EdgeInsets.only(
-                                                  top: 15,
-                                                  left: 8,
-                                                  right: 8,
-                                                  bottom: 5),
                                             ),
-                                            Flexible(
-                                              fit: FlexFit.tight,
-                                              child: Material(
-                                                borderRadius: BorderRadius.only(
-                                                    bottomRight:
-                                                        Radius.circular(25),
-                                                    bottomLeft:
-                                                        Radius.circular(25)),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 15),
-                                                  child: SizedBox(
-                                                    child: ListView(
-                                                      shrinkWrap: true,
-                                                      children: [
-                                                        TaskCard(
-                                                            "Make Calculator",
-                                                            "Scical goes null",
-                                                            "AppDev"),
-                                                        TaskCard(
-                                                            "Review Regular Expressions",
-                                                            "Regex goes  \d^[0-9]",
-                                                            "Automata"),
-                                                        TaskCard(
-                                                            "Sap-1 Review",
-                                                            "binary goes 01000101",
-                                                            "Comp Org"),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                            width: 300,
+                                            height: 300,
+                                          ),
+                                        );
+                                      },
                                     ),
-                                    width: 300,
-                                    height: 300,
                                   ),
-                                ),
+                                )
+
+                                // To do / Trackable Container
                               ],
                             )),
                       ),

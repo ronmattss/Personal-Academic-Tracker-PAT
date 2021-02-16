@@ -209,3 +209,65 @@ class _PinnedTaskCardState extends State<PinnedTaskCard> {
     return _pinnedTaskCard(context);
   }
 }
+
+class ToDoCard extends StatefulWidget {
+  final String toDoTitle;
+
+  ToDoCard(
+      [this.toDoTitle = 'Write Chapter 2']);
+
+  @override
+  State<StatefulWidget> createState() => _ToDoCardState();
+}
+
+class _ToDoCardState extends State<ToDoCard> {
+  var timeDilation;
+  String title = "title";
+  Text textIfNotChecked;
+  Text textIfChecked;
+  Text currentText;
+
+  @override
+  void initState() {
+    textIfNotChecked =
+    new Text(widget.toDoTitle, style: TextStyle(color: Colors.white,fontSize: 25));
+    textIfChecked = new Text(
+      widget.toDoTitle,
+      style: TextStyle(decoration: TextDecoration.lineThrough,fontSize: 25,color: Colors.white),
+    );
+    currentText = textIfNotChecked;
+    title = "hehe";
+    super.initState();
+  }
+
+  // Prefer This
+  Widget _customTaskTileSet(BuildContext context) {
+    return ListTile(
+      leading: Checkbox(
+        value: timeDilation == true,
+        onChanged: (bool value) {
+          setState(() {
+            timeDilation = value ? true : false;
+            currentText = timeDilation ? textIfChecked : textIfNotChecked;
+            title = value ? "woo" : "wee";
+          });
+        },
+      ),
+      title: currentText,
+      onTap: () {
+        setState(() {
+          // Go to Subject Page
+          title = "weeeeeeeeeeeeee";
+          print(title);
+        });
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+
+    return _customTaskTileSet(context);
+  }
+}
