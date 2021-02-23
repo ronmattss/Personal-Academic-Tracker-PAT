@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mysql1/mysql1.dart' as sql;
+import 'package:personalacademictracker/Helpers/Query.dart';
+import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 import 'package:personalacademictracker/Views/Windows/SubjectPage.dart';
 import 'package:personalacademictracker/Widgets/SubjectButtonBuilder.dart';
 import 'package:personalacademictracker/Widgets/Windows/TitlebarButtons.dart';
@@ -14,11 +17,14 @@ class DashboardWidget extends StatefulWidget {
 }
 
 class _DashboardWidget extends State<DashboardWidget> {
+  DatabaseHelper dbLoader = new DatabaseHelper();
+  sql.Results results;
+  List<sql.Row> rows;
   var expanded = true;
   double leftWidth = 200;
   double leftWidthCollapsed = 50;
   double drawerWidth = 200;
-  String thisShouldChange = "Steve Jobs";
+  String displayUser = "Steve Jobs";
   Widget rightSideWidget;
 
   void setWidth() {
@@ -32,15 +38,37 @@ class _DashboardWidget extends State<DashboardWidget> {
 
   @override
   void initState() {
-    print(thisShouldChange);
-    rightSideWidget = SubjectPage();
+    // Load database entries
+    print(displayUser);
+    loadDatabase();
+    rightSideWidget = Container(
+      color: Color(0xff439889),
+    );
     super.initState();
+  }
+
+  void loadDatabase() async {
+    results = await dbLoader
+        .connectDB(Query.getUserPass(Query.userName, Query.password));
+    rows = results.toList();
+    if (rows.isNotEmpty) {
+      displayUser =
+          "${rows[0][2]}, ${rows[0][3]} ${rows[0][4].toString()[0]}."; // display Name
+      Query.userName = rows[0][0]; // temporary
+    } else {
+      displayUser = "no data";
+    }
+    setState(() {
+      print("loaded");
+    });
+    //displayUser = rows[0][0];
   }
 
   @override
   void didUpdateWidget(covariant DashboardWidget oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
+    print("updated");
   }
 
   void changeRightSideWidget(Widget newWidget) {
@@ -56,7 +84,9 @@ class _DashboardWidget extends State<DashboardWidget> {
       child: Row(children: [
         Expanded(
             child: Container(
-                color: Color(0xffDDDDDD),padding: EdgeInsets.zero,margin: EdgeInsets.zero,
+                color: Color(0xffDDDDDD),
+                padding: EdgeInsets.zero,
+                margin: EdgeInsets.zero,
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -69,22 +99,22 @@ class _DashboardWidget extends State<DashboardWidget> {
                             height: MediaQuery.of(context).size.height,
                             child: Column(
                               children: [
-                               /* WindowTitleBarBox(*//*
+                                /* WindowTitleBarBox(*/ /*
                                     child: MoveWindow(
                                         child: Container(
                                   color: Theme.of(context).primaryColor,
-                                )))*//*,*/
+                                )))*/ /*,*/
                                 Expanded(
                                   child: Card(
                                     shape:
                                         Border.fromBorderSide(BorderSide.none),
                                     margin: EdgeInsets.zero,
-                                    color: Theme.of(context).primaryColor,
+                                    color: Theme.of(context).primaryColorLight,
                                     child: ListTileTheme(
                                       child: ListView(
                                         padding: EdgeInsets.all(0),
                                         children: [
-                                          // profile Box XD
+                                          // profile Box
                                           DrawerHeader(
                                             child: Column(children: [
                                               CircleAvatar(
@@ -95,7 +125,7 @@ class _DashboardWidget extends State<DashboardWidget> {
                                                 padding:
                                                     const EdgeInsets.all(8.0),
                                                 child: Text(
-                                                  thisShouldChange,
+                                                  displayUser,
                                                   style: TextStyle(
                                                       color: Colors.white),
                                                 ),
@@ -113,7 +143,19 @@ class _DashboardWidget extends State<DashboardWidget> {
                                             color:
                                                 Theme.of(context).primaryColor,
                                             elevation: 0,
-                                            child:SubjectListBuilder(),
+                                            child: SubjectListBuilder(
+                                              taskID: (int value) {
+
+                                                setState(() {
+                                                  rightSideWidget = new SubjectPage(
+                                                    subjectID: value,key: UniqueKey(),
+                                                  );
+                                                  print(
+                                                      "will this work?: $value"); // pass Subject ID here
+                                                  // pass new Widget here
+                                                });
+                                              },
+                                            ),
                                           )
                                         ],
                                       ),
@@ -133,15 +175,6 @@ class _DashboardWidget extends State<DashboardWidget> {
                             MediaQuery.of(context).size.width - drawerWidth - 2,
                         child: Column(
                           children: [
-                           /* WindowTitleBarBox(
-                                child: Row(
-                              children: [
-                                Expanded(
-                                  child: MoveWindow(),
-                                ),
-                                TitlebarButtons(),
-                              ],
-                            )),*/
                             Expanded(
                               child: AnimatedSwitcher(
                                   duration: const Duration(milliseconds: 250),
@@ -156,7 +189,6 @@ class _DashboardWidget extends State<DashboardWidget> {
       ]),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {

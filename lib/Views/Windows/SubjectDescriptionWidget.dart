@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+//TODO: Maybe Duplicate this for the subjects
 class SubjectDescriptionWidget extends StatefulWidget {
   final String taskNameDisplay;
   final String taskDescriptionDisplay;
@@ -78,8 +79,10 @@ class _SubjectDescriptionWidgetState extends State<SubjectDescriptionWidget> {
                 ),
               ],
             ),
-            Container(
-              width: 200,
+            Flexible(fit: FlexFit.loose,
+              child: Container(
+                width: 200,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -88,16 +91,18 @@ class _SubjectDescriptionWidgetState extends State<SubjectDescriptionWidget> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     // Texts
-                    Row(
+                    Row(mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          width: 500,
-                          child: Text(
-                            "Task Description: ${widget.taskDescriptionDisplay}",
-                            maxLines: 4,
-                            textDirection: TextDirection.ltr,
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                            overflow: TextOverflow.ellipsis,
+                        Flexible(
+                          flex: 1,fit: FlexFit.loose,
+                          child: Container(width: 500,
+                            child: Text(
+                              "Task Description: ${widget.taskDescriptionDisplay}",
+                              maxLines: 4,
+                              textDirection: TextDirection.ltr,
+                              style: TextStyle(color: Colors.white, fontSize: 20),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         )
                       ],

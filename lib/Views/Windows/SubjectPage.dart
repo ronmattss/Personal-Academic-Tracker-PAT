@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mysql1/mysql1.dart' as sql;
+import 'package:personalacademictracker/Helpers/Query.dart';
+import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 import 'package:personalacademictracker/Views/Windows/SubjectDescriptionWidget.dart';
 import 'package:personalacademictracker/Widgets/ScoreCard.dart';
 import 'package:personalacademictracker/Widgets/SubjectCard.dart';
@@ -9,8 +12,12 @@ import 'package:personalacademictracker/Widgets/SubjectPage/TaskView.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
 
 // Thie Page is the expanded version of the Lists
+// Pass parameters and load database
 class SubjectPage extends StatefulWidget {
-  SubjectPage({Key key}) : super(key: key);
+  final int subjectID;
+
+  SubjectPage({Key key, this.subjectID}) : super(key: key);
+
 
   @override
   State<StatefulWidget> createState() => _SubjectPageState();
@@ -20,20 +27,41 @@ class SubjectPage extends StatefulWidget {
 // show Tasks and To Do
 // Track deliverables
 class _SubjectPageState extends State<SubjectPage> {
+  bool dataLoadedFlag= false;
+  DatabaseHelper dbHelper = new DatabaseHelper();
+  List<sql.Row> rows;
+  sql.Results result;
   final List<Map> myProducts =
       List.generate(5, (index) => {"id": index, "Testing some cool Flutter UI widgets IDK WHAT AM I DOING LMAOOOOOOOOOOOOOOO": "Product $index"})
           .toList();
+
+  void initState()
+  {
+    loadData();
+    super.initState();
+  }
+
+  void loadData() async
+  {
+    result = await dbHelper.connectDB(Query.getSpecificSubjectOfUser(Query.userName,widget.subjectID));
+    rows = result.toList();
+    dataLoadedFlag = true;
+    setState(() {
+
+    });
+
+  }
   // Crate left side Nav menu, right side le task
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
 
-    return FractionallySizedBox(
+    return !dataLoadedFlag ?  Container(color: Color(0xff439889)):FractionallySizedBox(
       child: Row(
         children: [
           Expanded(
             child: Container(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).primaryColorLight,
               margin: EdgeInsets.zero,
               width: 200,
               height: MediaQuery.of(context).size.height,
@@ -76,7 +104,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                         height: 55,
                                         width: 300,
                                         child: Text(
-                                          "Subject: Programming 1",
+                                          "Subject: ${dataLoadedFlag ? rows[0][0]:"" }",
                                           style: TextStyle(fontSize: 20),
                                           maxLines: 2,
                                         ),
@@ -85,7 +113,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                         padding: EdgeInsets.only(left: 10),
                                         height: 45,
                                         child: Text(
-                                          "Projected Grade: 1.75 ",
+                                          "Projected Grade: ${rows[0][2] == null ? "not available":rows[0][2]}  ",
                                           style: TextStyle(fontSize: 20),
                                         ),
                                       ),
@@ -134,7 +162,10 @@ class _SubjectPageState extends State<SubjectPage> {
                             )),
                         Expanded(
                           // Handles Lists of Tasks or Trackables
-                          child: TaskView(),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 1),
+                            child: TaskView(subjectID: widget.subjectID,key: UniqueKey(),),
+                          ),
                         )
                       ],
                     ),
@@ -150,7 +181,7 @@ class _SubjectPageState extends State<SubjectPage> {
                             width:
                                 MediaQuery.of(context).size.width - 500 - 2 - 1,
                             height: 200,
-                            color: Colors.white,
+                            color: Theme.of(context).primaryColorLight,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
