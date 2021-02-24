@@ -1,8 +1,10 @@
 //Contains To do List which is an individual Task which also contains list of sub to do on that task
-
+import 'package:mysql1/mysql1.dart' as sql;
 import 'package:fluentui_icons/fluentui_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personalacademictracker/Helpers/Query.dart';
+import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 
 class TaskCard extends StatefulWidget {
   final String taskTitle;
@@ -212,9 +214,13 @@ class _PinnedTaskCardState extends State<PinnedTaskCard> {
 
 class ToDoCard extends StatefulWidget {
   final String toDoTitle;
+  final String toDoDescription;
+  final int isComplete;
 
   ToDoCard(
-      [this.toDoTitle = 'Write Chapter 2']);
+      {this.toDoDescription,
+      this.toDoTitle = 'Write Chapter 2',
+      this.isComplete});
 
   @override
   State<StatefulWidget> createState() => _ToDoCardState();
@@ -226,14 +232,19 @@ class _ToDoCardState extends State<ToDoCard> {
   Text textIfNotChecked;
   Text textIfChecked;
   Text currentText;
+  bool flagComplete;
 
   @override
   void initState() {
-    textIfNotChecked =
-    new Text(widget.toDoTitle, style: TextStyle(color: Colors.white,fontSize: 25));
+    flagComplete = widget.isComplete == 1 ? true : false;
+    textIfNotChecked = new Text(widget.toDoTitle,
+        style: TextStyle(color: Colors.white, fontSize: 25));
     textIfChecked = new Text(
       widget.toDoTitle,
-      style: TextStyle(decoration: TextDecoration.lineThrough,fontSize: 25,color: Colors.white),
+      style: TextStyle(
+          decoration: TextDecoration.lineThrough,
+          fontSize: 25,
+          color: Colors.white),
     );
     currentText = textIfNotChecked;
     title = "hehe";
@@ -244,12 +255,13 @@ class _ToDoCardState extends State<ToDoCard> {
   Widget _customTaskTileSet(BuildContext context) {
     return ListTile(
       leading: Checkbox(
-        value: timeDilation == true,
+        value: flagComplete == true,
         onChanged: (bool value) {
           setState(() {
-            timeDilation = value ? true : false;
-            currentText = timeDilation ? textIfChecked : textIfNotChecked;
+            flagComplete = value ? true : false;
+            currentText = flagComplete ? textIfChecked : textIfNotChecked;
             title = value ? "woo" : "wee";
+            // TODO: Update to do
           });
         },
       ),
@@ -271,3 +283,4 @@ class _ToDoCardState extends State<ToDoCard> {
     return _customTaskTileSet(context);
   }
 }
+

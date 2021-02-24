@@ -10,8 +10,10 @@ import 'package:personalacademictracker/Widgets/Windows/ToDoCard.dart';
 // with to do list inside
 class TaskView extends StatefulWidget {
   final int subjectID;
+  final Function(int,TaskValue) onPressTask;
 
-  const TaskView({Key key, this.subjectID}) : super(key: key);
+
+  const TaskView({Key key, this.subjectID, this.onPressTask}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _TaskViewState();
 }
@@ -72,12 +74,12 @@ List<DummyValue> generateItems(int numberOfItems) {
 class _TaskViewState extends State<TaskView>
     with AutomaticKeepAliveClientMixin<TaskView> {
   DatabaseHelper dbLoader = new DatabaseHelper();
+  sql.Results results;
+  List<sql.Row> rows;
   List<DummyValue> _data = generateItems(1); // Generate Data Will be Async
   List<TaskValue> _taskData =[];
   bool showList = false;
 
-  sql.Results results;
-  List<sql.Row> rows;
 
   void initState() {
     loadData();
@@ -144,6 +146,7 @@ print(showList);
               ),
               onTap: () {
                 setState(() {
+                  widget.onPressTask(value.taskID,value);
                   print("title");
                 });
               },

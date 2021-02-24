@@ -27,8 +27,7 @@ class Query {
 
   // Insert
   //static String insertProfile = "INSERT INTO `patdb`.`profile_table`(`studentID`,`password`,`lastName`,`firstName`,`middleName`,`birthDate`)VALUES(<{studentID: }>,<{password: }>,<{lastName: }>,<{firstName: }>,<{middleName: }>,<{birthDate: }>);";       // Insert Profile // call this in a function
-  static String insertGradingPeriod =
-      ""; // contains Subject, Grading Period, and null Grade // call this in a function
+  static String insertGradingPeriod =""; // contains Subject, Grading Period, and null Grade // call this in a function
   //static String insertSubjectTask = "CALL `patdb`.`insert_Subject_Task`('2018-01405-MN-0', 1,'taskNameTest', 'task description', 20200130193000, '20200228193000', 0);"; // call this in a function
   //static String insertSubjectTrackable = "CALL `patdb`.`insert_Subject_Trackable`('SeatWork 5', 5, 5, 20210131, 2, '2018-01405-MN-0',1);"; // call this in a function
   //static String insertTaskTodo = "INSERT INTO `patdb`.`todo_table`(`todoID`,`taskID`,`todoName`,`todoDescription`,`todoComplete`)VALUES(<{todoID: }>,<{taskID: }>,<{todoName: }>,<{todoDescription: }>,<{todoComplete: }>);";
@@ -41,7 +40,12 @@ class Query {
  //     "SELECT subjectName as \"Subjects of user\", periodName as \"Period\" FROM subject_table as st INNER JOIN grading_period_table as gp INNER JOIN period_table as pt WHERE gp.periodID = pt.periodID AND st.subjectID = gp.subjectID AND gp.studentID=\"2018-01405-MN-0\";";
 
 
-
+// Views for list of
+  /*
+  * subjects
+  * periods
+  * type
+  * */
 
 
   // for login and profile
@@ -52,6 +56,12 @@ class Query {
      return getUserPass; // if ok then store ID
   }
 
+
+  static String getUserTrackables(String userID,int subjectID)
+  {
+   String getTrackables = "SELECT trackableID,trackableName,typeName,score,maxscore as 'max Score' From trackablegrade_table as tr inner join type_table as t on tr.typeID = t.typeID Where trackableID IN(Select trackableID from subjecttrackablegrade_table Where subjectID=$subjectID AND studentID ='$userID');";
+   return getTrackables;
+  }
 
   static String getSubjectsOfUser(String userID)
   {
@@ -68,8 +78,14 @@ class Query {
   static String getUserTasks(String userId,int subjectID)
   {
     String getUserTask = "Select * From task_table Where taskID in(Select taskID From subjecttasks_table Where studentID ='$userId' AND subjectID = $subjectID);";
-     //String getUserTask = "Select * From todo_table Where taskID in(Select taskID From subjecttasks_table Where studentID ='$userId' AND subjectID = $subjectID);";
+     //String getUserTodos = "Select * From todo_table Where taskID in(Select taskID From subjecttasks_table Where studentID ='$userId' AND subjectID = $subjectID);";
      return getUserTask;
+
+  }
+  static String getUserTodos(String userId,int subjectID,int taskID)
+  {
+    String getUserTodos = "Select * From todo_table Where taskID in(Select taskID From subjecttasks_table Where studentID ='$userId' AND subjectID = $subjectID AND taskID = $taskID);";
+    return getUserTodos;
 
   }
 

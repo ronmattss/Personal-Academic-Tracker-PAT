@@ -2,23 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 //TODO: Maybe Duplicate this for the subjects
-class SubjectDescriptionWidget extends StatefulWidget {
-  final String taskNameDisplay;
-  final String taskDescriptionDisplay;
-  final int todoLength;
-  final int isComplete;
-  SubjectDescriptionWidget(
-  {this.taskDescriptionDisplay = "",
-      this.taskNameDisplay = "",
-      this.isComplete = 0, this.todoLength});
+class SubjectTrackableDescriptionWidget extends StatefulWidget {
+  final String trackableNameDisplay;
+  final String typeDisplay;
+  final double score;
+  final double maxScore;
+  SubjectTrackableDescriptionWidget(
+  {this.typeDisplay = "",
+      this.trackableNameDisplay = "",
+      this.maxScore = 0, this.score});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _SubjectDescriptionWidgetState();
+    return _SubjectTrackableDescriptionWidgetState();
   }
 }
 
-class _SubjectDescriptionWidgetState extends State<SubjectDescriptionWidget> {
+class _SubjectTrackableDescriptionWidgetState extends State<SubjectTrackableDescriptionWidget> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -35,15 +35,9 @@ class _SubjectDescriptionWidgetState extends State<SubjectDescriptionWidget> {
                 // Texts For Descriptions
                 Row(
                   children: [
+
                     Text(
-                      "Task:",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                    Text(
-                      " ${widget.taskNameDisplay}",
+                      " ${widget.trackableNameDisplay}",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )
                   ],
@@ -51,31 +45,20 @@ class _SubjectDescriptionWidgetState extends State<SubjectDescriptionWidget> {
                 Row(
                   children: [
                     Text(
-                      "Todo:",
+                      "score:",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
                       ),
                     ),
                     Text(
-                      " ${widget.todoLength}",
+                      " ${widget.score} / ${widget.maxScore}",
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     )
                   ],
                 ),
                 Row(
                   children: [
-                    Text(
-                      "Status: ",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
-                    ),
-                    Text(
-                      "${checkIfComplete(widget.isComplete)}",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    )
                   ],
                 ),
               ],
@@ -98,7 +81,7 @@ class _SubjectDescriptionWidgetState extends State<SubjectDescriptionWidget> {
                           flex: 1,fit: FlexFit.loose,
                           child: Container(width: 500,
                             child: Text(
-                              "Task Description: ${widget.taskDescriptionDisplay}",
+                              "Type: ${widget.typeDisplay}",
                               maxLines: 4,
                               textDirection: TextDirection.ltr,
                               style: TextStyle(color: Colors.white, fontSize: 20),

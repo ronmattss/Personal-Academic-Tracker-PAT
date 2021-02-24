@@ -24,6 +24,7 @@ class DatabaseHelper {
     }
 
     queryResult = await connection.query(query);
+    connection.close();
     return queryResult;
   }
 
