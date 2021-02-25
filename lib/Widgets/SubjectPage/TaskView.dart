@@ -95,6 +95,7 @@ class _TaskViewState extends State<TaskView>
       setState(()  {
         showList = true;
         for (int i = 0; i < rows.length; i++) {
+          print("DateTime: ${rows[i][3].runtimeType}");
           TaskValue t = new TaskValue(
               taskID: rows[i][0],
               taskName: rows[i][1],

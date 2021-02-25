@@ -47,18 +47,13 @@ class _SubjectPageState extends State<SubjectPage> {
   Widget listOfTodos = new ToDoCard();
   Widget view = new TaskView();
   Widget taskDescription = SubjectDescriptionWidget();
+  sql.Results result;
   List<sql.Row> rows;
   List<sql.Row> rowsTodo;
+  List<sql.Row> grade;
   List<Todo> todo = [];
 
-  sql.Results result;
-  List<Map> myProducts = List.generate(
-      5,
-      (index) => {
-            "id": index,
-            "Testing some cool Flutter UI widgets IDK WHAT AM I DOING LMAOOOOOOOOOOOOOOO":
-                "Product $index"
-          }).toList();
+  String projectedGrade;
 
   void initState() {
     loadData();
@@ -66,11 +61,15 @@ class _SubjectPageState extends State<SubjectPage> {
   }
 
   void loadData() async {
+    print(Query.userName);
     result = await dbHelper.connectDB(
         Query.getSpecificSubjectOfUser(Query.userName, widget.subjectID));
     rows = result.toList();
+    result = await dbHelper.connectDB(Query.getUserProjectedGrade(Query.userName,widget.subjectID));
+    grade = result.toList();
     dataLoadedFlag = true;
     setState(() {
+      projectedGrade = grade[0][0].toString();
       view = TaskView(
         subjectID: widget.subjectID,
         key: UniqueKey(),
@@ -179,7 +178,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                   EdgeInsets.only(left: 10),
                                               height: 45,
                                               child: Text(
-                                                "Projected Grade: ${rows[0][2] == null ? "not available" : rows[0][2]}  ",
+                                                "Projected Grade: ${grade[0][0] == null ? "not available" : grade[0][0]}  ",
                                                 style: TextStyle(fontSize: 20),
                                               ),
                                             ),

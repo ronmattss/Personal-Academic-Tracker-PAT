@@ -1,15 +1,24 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:personalacademictracker/Helpers/Query.dart';
+
 import 'package:personalacademictracker/Preferences/CustomTheme.dart';
+import 'package:personalacademictracker/Views/Windows/LoginPage.dart';
+import 'package:personalacademictracker/Views/Windows/RegisterPage.dart';
 import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
 import 'package:personalacademictracker/Widgets/SubjectCard.dart';
-
+import 'package:window_size/window_size.dart';
 import 'Helpers/databaseHelper.dart';
 
-Future<void> main() async {
-   var connection = new DatabaseHelper();
-   var results = await connection.connectDB("SELECT * FROM patdb.profile_table;");
-   print(results.first);
+void main()  {
+     WidgetsFlutterBinding.ensureInitialized();
+   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+     setWindowTitle('Personal Academic tracker');
+
+     setWindowMinSize(const Size(400, 500));
+     setWindowMaxSize(Size.infinite);
+   }
   runApp(MyApp());
 /*  doWhenWindowReady(() {
     var win = appWindow;
@@ -23,21 +32,25 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+ final Widget widget;
+
+  const MyApp({Key key, this.widget}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Personal Academic Tracker',
-      home: MyHomePage(title: 'Personal Academic Tracker'),
+      home: MyHomePage(title: 'Personal Academic Tracker',widget: widget,),
       theme: CustomThemeData.customTheme,
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title, this.widget}) : super(key: key);
   final String title;
+  final Widget widget;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -61,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
       /* appBar: AppBar(elevation: 0,
         title: Text(widget.title),
       ),*/
-      body: DashboardWidget(),
+      body: widget.widget == null ? LoginWidget():widget.widget,//DashboardWidget(),
       /*drawer: Drawer(
           child: ListView(
         padding: EdgeInsets.zero,
@@ -93,11 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       )),*/
-      floatingActionButton: FloatingActionButton(
+/*      floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),*/ // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

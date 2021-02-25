@@ -1,5 +1,5 @@
 import 'package:mysql1/mysql1.dart';
-
+import 'package:intl/intl.dart';
 import 'databaseHelper.dart';
 
 /*
@@ -11,6 +11,14 @@ import 'databaseHelper.dart';
 * Which only needs the username and Subject ID for that
 * */
 class Query {
+
+  static final Query _singleton = Query._internal();
+
+  factory Query() {
+    return _singleton;
+  }
+
+  Query._internal();
   // Profile Part
   static String userName = "2018-01405-MN-0";
   static String password = "password";
@@ -22,7 +30,7 @@ class Query {
  //     "Select * From profile_table Where studentID =\"2018-01405-MN-0\" AND password = \"password\";";
 
   // Subject Info and grade
-  static String getUserProjectedGradePerSubject = "";
+  //static String getUserProjectedGradePerSubject = "";
   static String getSubjectList = ""; // View of Subjects
 
   // Insert
@@ -48,6 +56,13 @@ class Query {
   * */
 
 
+  static String setUserProfile(String id, String pass,String ln,String fn, String mn, DateTime birthDate)
+  {
+    DateFormat format = DateFormat('yyyyMMdd');
+    String insertProfile = "INSERT INTO `patdb`.`profile_table`(`studentID`,`password`,`lastName`,`firstName`,`middleName`,`birthDate`)VALUES('$id','$password','$ln','$fn','$mn',${format.format(birthDate)});";
+    return insertProfile;
+  }
+
   // for login and profile
   static String getUserPass(String userID,String password)
   {
@@ -56,6 +71,12 @@ class Query {
      return getUserPass; // if ok then store ID
   }
 
+
+  static String getUserProjectedGrade(String userID,int subjectID)
+  {
+    String projectedGrade = "SELECT Round((Sum(score)/Sum(maxscore)) * 100) as 'projected_grade'From trackablegrade_table as tr inner join type_table as t on tr.typeID = t.typeID Where trackableID IN(Select trackableID from subjecttrackablegrade_table Where subjectID=$subjectID AND studentID ='$userName');";
+      return projectedGrade;
+  }
 
   static String getUserTrackables(String userID,int subjectID)
   {
@@ -105,10 +126,12 @@ class Query {
   static String insertProfileToTable(String studentID, String password,
       String lastName, String firstName, String middleName, String birthDate) {
     String insertProfile =
-        "INSERT INTO `patdb`.`profile_table`(`studentID`,`password`,`lastName`,`firstName`,`middleName`,`birthDate`)VALUES($studentID,$password,$lastName,$firstName,$middleName,$birthDate);"; // Insert Profile // call this in a function
+        "INSERT INTO `patdb`.`profile_table`(`studentID`,`password`,`lastName`,`firstName`,`middleName`,`birthDate`)VALUES('$studentID','$password','$lastName','$firstName','$middleName','$birthDate');"; // Insert Profile // call this in a function
     return insertProfile;
   }
 
+
+  // Insert Subject Grading
   static String insertSubjectTaskToTable(
       String userID,
       int subjectID,

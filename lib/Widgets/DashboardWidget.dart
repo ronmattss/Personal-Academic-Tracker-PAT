@@ -12,6 +12,10 @@ import 'DashboardButton.dart';
 //TODO: Add Subject,Task,Todo,Trackers,statistics,Subject page,other Dashboard Stuff, Profile, Statistics
 //TODO: Resizable Widgets based on Screen size
 class DashboardWidget extends StatefulWidget {
+  final String userName;
+  final String password;
+
+  const DashboardWidget({Key key, this.userName, this.password}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _DashboardWidget();
 }
@@ -26,6 +30,7 @@ class _DashboardWidget extends State<DashboardWidget> {
   double drawerWidth = 200;
   String displayUser = "Steve Jobs";
   Widget rightSideWidget;
+  Widget buttons;
 
   void setWidth() {
     if (expanded) {
@@ -49,18 +54,28 @@ class _DashboardWidget extends State<DashboardWidget> {
 
   void loadDatabase() async {
     results = await dbLoader
-        .connectDB(Query.getUserPass(Query.userName, Query.password));
-    rows = results.toList();
-    if (rows.isNotEmpty) {
-      displayUser =
+        .connectDB(Query.getUserPass(widget.userName, widget.password));
+
+    Future<List<sql.Row>>.delayed(Duration(seconds: 1), () {
+      return results.toList();
+    }).then((value) {
+      rows = value.toList();
+      print(rows[0][0]);
+      setState(() {
+        if (rows.isNotEmpty) {
+          displayUser =
           "${rows[0][2]}, ${rows[0][3]} ${rows[0][4].toString()[0]}."; // display Name
-      Query.userName = rows[0][0]; // temporary
-    } else {
-      displayUser = "no data";
-    }
-    setState(() {
-      print("loaded");
+          Query.userName = rows[0][0]; // temporary
+        } else {
+          displayUser = "no data";
+        }
+        setState(() {
+          print("loaded");
+        });
+      });
     });
+
+
     //displayUser = rows[0][0];
   }
 
@@ -78,7 +93,7 @@ class _DashboardWidget extends State<DashboardWidget> {
   }
 
   Widget _dashboard(BuildContext context) {
-    return SizedBox(
+    return  SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       child: Row(children: [
@@ -193,6 +208,10 @@ class _DashboardWidget extends State<DashboardWidget> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return _dashboard(context);
+    return Scaffold(body: _dashboard(context), floatingActionButton: FloatingActionButton(
+      onPressed: () {print("WEEEEEEEEEEEEEE");},
+      tooltip: 'Increment',
+      child: Icon(Icons.add),
+    ),);
   }
 }

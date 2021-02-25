@@ -30,6 +30,10 @@ dependencies:
   #bitsdojo_window: 0.0.2
   win32: ^1.7.4
   fluentui_icons: ^0.2.0
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
 
 
 
