@@ -51,6 +51,7 @@ class _SubjectPageState extends State<SubjectPage> {
   List<sql.Row> rows;
   List<sql.Row> rowsTodo;
   List<sql.Row> grade;
+  int lengthOfTodo = 0;
   List<Todo> todo = [];
 
   String projectedGrade;
@@ -107,7 +108,10 @@ class _SubjectPageState extends State<SubjectPage> {
               todoName: rowsTodo[index][2],
               todoDescription: rowsTodo[index][3],
               isComplete: rowsTodo[index][4])).toList();
-      setState(() {});
+      setState(() {
+        lengthOfTodo = todo.length;
+
+      });
     });
   }
 
@@ -228,7 +232,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                                           taskValue
                                                                               .taskDescription,
                                                                       todoLength:
-                                                                          todo.length,
+                                                                      lengthOfTodo,
                                                                     );
                                                                   });
                                                                 },
@@ -243,7 +247,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                         fit: FlexFit.tight,
                                                         child: TextButton(
                                                           child: new Text(
-                                                              'Trackables',
+                                                              'Outputs',
                                                               style: TextStyle(
                                                                   color: Colors
                                                                       .black,

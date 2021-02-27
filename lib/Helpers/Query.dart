@@ -113,6 +113,9 @@ class Query {
 
 
 
+  // note that the index of the values are 0 if put on a list
+  static String getSubjects () => 'SELECT * FROM patdb.subjectlist;';
+  static String getPeriod () => 'SELECT * FROM patdb.periodlist;';
 
 
   // Insert Statements
