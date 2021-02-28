@@ -8,7 +8,8 @@ class SubjectListBuilder extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => SubjectListBuilderState();
   final Function(int) taskID;
-  SubjectListBuilder({this.taskID});
+  final Function(String) taskName;
+  SubjectListBuilder({this.taskID, this.taskName});
 }
 
 // This will be a future builder for Subjects
@@ -43,11 +44,14 @@ class SubjectListBuilderState extends State<SubjectListBuilder> {
             onPressButton: (int value) {
               // just pass the ID of the subject
               setState(() {
+                loadAsync();
                 if (testCallback != value) {
                   testCallback = value;
                   print("Length: $testCallback");
                   widget.taskID(testCallback);
+                  widget.taskName(rows[index][1]);
                 }
+
 
                 //print("Length: $testCallback");
               });

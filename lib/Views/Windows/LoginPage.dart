@@ -49,7 +49,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                       MyApp(
                         widget: DashboardWidget(
                           userName: userName,
-                          password: password,
+                          password: password,key: UniqueKey(),
                         ),
                       )));
         }

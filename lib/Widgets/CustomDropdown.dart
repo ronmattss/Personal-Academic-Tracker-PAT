@@ -5,8 +5,8 @@ class CustomDropDown extends StatefulWidget
 {
   final List<String> selections;
   final Function(String) onSelect;
-
-  const CustomDropDown({Key key, this.selections, this.onSelect}) : super(key: key);
+  final Function(String) onDefault;
+  const CustomDropDown({Key key, this.selections, this.onSelect, this.onDefault}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _CustomDropDownState();
 
@@ -19,7 +19,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
   @override
   void initState() {
     // TODO: implement initState
-    _selectedLocation = widget.selections[0];
+     _selectedLocation = widget.selections[0];
+  widget.onDefault(_selectedLocation);
     super.initState();
   }
   @override
@@ -31,7 +32,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
         setState(() {
           _selectedLocation = newValue;
           print('$_selectedLocation $newValue');
-         // widget.onSelect(_selectedLocation);
+          widget.onSelect(_selectedLocation);
         });
       },
       items: widget.selections.map((location) {

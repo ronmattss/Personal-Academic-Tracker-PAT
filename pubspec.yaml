@@ -27,6 +27,7 @@ dependencies:
   carousel_slider: ^3.0.0
   table_calendar: ^2.3.1
   provider: ^4.3.2+2
+  msix: ^0.1.14
   #bitsdojo_window: 0.0.2
   win32: ^1.7.4
   fluentui_icons: ^0.2.0

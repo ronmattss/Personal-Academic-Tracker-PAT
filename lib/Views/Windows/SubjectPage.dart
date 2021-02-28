@@ -7,8 +7,6 @@ import 'package:personalacademictracker/Helpers/Query.dart';
 import 'package:personalacademictracker/Helpers/databaseHelper.dart';
 import 'package:personalacademictracker/Views/Windows/SubjectDescriptionWidget.dart';
 import 'package:personalacademictracker/Views/Windows/SubjectTrackableDescriptionWidget.dart';
-import 'package:personalacademictracker/Widgets/ScoreCard.dart';
-import 'package:personalacademictracker/Widgets/SubjectCard.dart';
 import 'package:personalacademictracker/Widgets/SubjectPage/TaskView.dart';
 import 'package:personalacademictracker/Widgets/SubjectPage/TrackableView.dart';
 import 'package:personalacademictracker/Widgets/TaskCard.dart';
@@ -71,12 +69,16 @@ class _SubjectPageState extends State<SubjectPage> {
     dataLoadedFlag = true;
     setState(() {
       projectedGrade = grade[0][0].toString();
+      Query.currentPeriod = rows[0][3];
+      print("Current Period: ${Query.currentPeriod}");
       view = TaskView(
         subjectID: widget.subjectID,
         key: UniqueKey(),
         onPressTask: (int value, TaskValue taskValue) {
           loadTodo(value);
           setState(() {
+            Query.currentTask = taskValue.taskID;
+            print( 'current Task: ${Query.currentTask}');
             taskDescription = new SubjectDescriptionWidget(
               taskNameDisplay: taskValue.taskName,
               isComplete: taskValue.taskIsdone,
@@ -220,6 +222,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                                   loadTodo(
                                                                       value);
                                                                   setState(() {
+                                                                    Query.currentTask = taskValue.taskID;
                                                                     taskDescription =
                                                                         new SubjectDescriptionWidget(
                                                                       taskNameDisplay:
@@ -265,6 +268,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                                     (TrackableValue
                                                                         value) {
                                                                  setState(() {
+                                                                   Query.currentOutput = value.trackableID;
                                                                    taskDescription =
                                                                        SubjectTrackableDescriptionWidget(
                                                                          trackableNameDisplay:
@@ -372,7 +376,7 @@ class _SubjectPageState extends State<SubjectPage> {
                                                             child: ToDoCard(
                                                               toDoTitle:
                                                                   todo[index]
-                                                                      .todoName,
+                                                                      .todoName,todoID: todo[index].todoID,isComplete: todo[index].isComplete,
                                                             ), // this where you put values
                                                             padding:
                                                                 EdgeInsets.only(

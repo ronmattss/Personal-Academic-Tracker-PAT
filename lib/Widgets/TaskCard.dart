@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:personalacademictracker/Helpers/Query.dart';
 import 'package:personalacademictracker/Helpers/databaseHelper.dart';
+import 'package:intl/intl.dart';
 
 class TaskCard extends StatefulWidget {
   final String taskTitle;
@@ -215,12 +216,14 @@ class _PinnedTaskCardState extends State<PinnedTaskCard> {
 class ToDoCard extends StatefulWidget {
   final String toDoTitle;
   final String toDoDescription;
+  final int todoID;
   final int isComplete;
 
   ToDoCard(
       {this.toDoDescription,
       this.toDoTitle = 'Write Chapter 2',
-      this.isComplete});
+      this.isComplete,
+      this.todoID});
 
   @override
   State<StatefulWidget> createState() => _ToDoCardState();
@@ -253,7 +256,135 @@ class _ToDoCardState extends State<ToDoCard> {
 
   // Prefer This
   Widget _customTaskTileSet(BuildContext context) {
+    Query.currentTodo = widget.todoID;
+    print("Current Todo ID = ${Query.currentTodo}");
+    DatabaseHelper dbLoader = new DatabaseHelper();
+    sql.Results results;
+    final TextEditingController _todoNameController =
+        new TextEditingController();
+    final TextEditingController _todoDescriptionController =
+        new TextEditingController();
+    _todoNameController.text = widget.toDoTitle;
+    _todoDescriptionController.text = widget.toDoDescription;
+    String todoName = _todoNameController.text;
+    String todoDescription = _todoDescriptionController.text;
+
+    void updateTodo() async {
+      print(todoName);
+      print(todoDescription);
+      results = await dbLoader.connectDB(Query.updateTaskTodo(
+          todoName: todoName,
+          todoDesc: todoDescription,
+          isComplete: flagComplete,
+          todoID: Query.currentTodo));
+      setState(() {
+        if (results.affectedRows > 0)
+          Navigator.of(context, rootNavigator: true).pop();
+      });
+    }
+
+    void updateCompleteFlag(bool flag) async {
+      print("Flagged: $flag ${Query.currentTodo}");
+      print(todoName);
+      print(todoDescription);
+      results = await dbLoader.connectDB(Query.updateTodoComplete(
+          isComplete: flag, todoID: Query.currentTodo));
+      setState(() {});
+    }
+
+    void deleteTodo() async {
+      results = await dbLoader
+          .connectDB(Query.deleteTaskTodo(todoID: widget.todoID));
+    }
+
     return ListTile(
+      onLongPress: () {
+        Query.currentTodo = widget.todoID;
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Update Todo ${Query.currentTodo}"),
+                content: Container(
+                  height: 200,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 30,
+                        ),
+                        child: TextField(
+                          cursorColor: Theme.of(context).primaryColor,
+                          controller: _todoNameController,
+                          onChanged: (String value) => todoName = value,
+                          decoration: InputDecoration(
+                            hintText: 'Add Todo',
+                            labelText: 'Todo Name',
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 30,
+                        ),
+                        child: TextField(
+                          cursorColor: Theme.of(context).primaryColor,
+                          controller: _todoDescriptionController,
+                          onChanged: (String value) => todoDescription = value,
+                          decoration: InputDecoration(
+                            hintText: 'Add Todo Description',
+                            labelText: ' Todo Description',
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Flexible(
+                              flex: 2,
+                              child: ElevatedButton(
+                                child: Text("Add"),
+                                onPressed: () {
+                                  setState(() {
+                                    updateTodo();
+                                  });
+                                },
+                              )), // Add Database Entry and Pop
+                          Flexible(
+                              flex: 2,
+                              child: ElevatedButton(
+                                child: Text("Cancel"),
+                                onPressed: () {
+                                  setState(() {
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
+                                  });
+                                },
+                              )),
+                          Flexible(
+                              flex: 2,
+                              child: ElevatedButton(
+                                child: Text("Delete"),
+                                onPressed: () {
+                                  setState(() {
+                                    deleteTodo();
+                                    Navigator.of(context, rootNavigator: true)
+                                        .pop();
+                                  });
+                                },
+                              )), // pop cancel
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              );
+            });
+      },
       leading: Checkbox(
         value: flagComplete == true,
         onChanged: (bool value) {
@@ -261,6 +392,7 @@ class _ToDoCardState extends State<ToDoCard> {
             flagComplete = value ? true : false;
             currentText = flagComplete ? textIfChecked : textIfNotChecked;
             title = value ? "woo" : "wee";
+            updateCompleteFlag(flagComplete);
             // TODO: Update to do
           });
         },
@@ -283,4 +415,3 @@ class _ToDoCardState extends State<ToDoCard> {
     return _customTaskTileSet(context);
   }
 }
-

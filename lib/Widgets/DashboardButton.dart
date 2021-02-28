@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:personalacademictracker/Helpers/Query.dart';
+import 'package:personalacademictracker/Widgets/DashboardWidget.dart';
+import 'package:personalacademictracker/main.dart';
 
 
 class DashboardButton extends StatefulWidget {
@@ -40,18 +43,27 @@ class _DashboardButtonState extends State<DashboardButton> {
     currentStateColor = currentState ? activeStateColor : inactiveStateColor;
     return ListTile(
       hoverColor: Theme.of(context).primaryColorDark,
-      selectedTileColor: Theme.of(context).accentColor,
       selected: currentState,
-      leading: Container(width: 3, color: currentStateColor),
       minLeadingWidth: 0,
       contentPadding: EdgeInsets.symmetric(horizontal: 1),
-      horizontalTitleGap: 1,
-      title: Center(
+      title: Padding(
+        padding: const EdgeInsets.only(left: 10),
         child: Text(
           widget.buttonTitle,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white),maxLines: 1,overflow: TextOverflow.ellipsis,
         ),
-      ),
+      ),onLongPress: (){
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  MyApp(
+                    widget: DashboardWidget(
+                      userName: Query.userName,
+                      password: Query.password,key: UniqueKey(),
+                    ),
+                  )));
+    },
       onTap: () {
         setState(() {
           currentState = !currentState;
